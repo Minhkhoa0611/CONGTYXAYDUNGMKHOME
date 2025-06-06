@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MK Design Chatbot</title>
+  <link rel="stylesheet" href="chatbox.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div id="chatbox-content">
+    <div id="chat-container">
+      <div id="chat-header" style="text-align: center;">
+        <img src="https://www.xaydungminhkhoa.online/Logo.png" alt="Logo" style="height: 50px; display: block; margin: 0 auto;">
+        💬 MK Home Chatbot
+        <p style="font-size: 12px; color: gray;">Lịch sử trò chuyện sẽ được lưu trữ trên trình duyệt và không bị mất khi tải lại trang.</p>
+      </div>
+      <div id="chat-body">
+        <!-- Mẫu tin nhắn và gợi ý sẽ được thêm động qua JavaScript -->
+      </div>
+      <div id="chat-input">
+        <button id="menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <input type="text" id="user-input" placeholder="Nhập câu hỏi..." oninput="showSuggestions()" />
+        <button id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+        <div id="sample-messages-menu" class="hidden">
+          <!-- Mẫu tin nhắn sẽ được thêm động qua JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="chatbox.js"></script>
+</body>
+</html>

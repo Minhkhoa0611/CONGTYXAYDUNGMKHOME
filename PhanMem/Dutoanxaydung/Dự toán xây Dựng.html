@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự Toán Nhanh Chi Phí Xây Dựng Nhà</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @media print {
+            #estimateForm, #calculateBtn {
+                display: none; /* Ẩn phần nhập khi in */
+            }
+            #exportBtn {
+                display: none; /* Ẩn nút Xuất Kết Quả khi in */
+            }
+            h1, #result h2 {
+                display: none; /* Ẩn tiêu đề cũ */
+            }
+            #printTitle {
+                display: block; /* Hiển thị tiêu đề mới */
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+        }
+        #printTitle {
+            display: none; /* Ẩn tiêu đề mới khi không in */
+        }
+    </style>
+</head>
+<body>
+    <button id="historyBtn">Lịch sử</button> <!-- Nút Lịch sử -->
+    <button id="settingsBtn">Cài Đặt</button> <!-- Nút Cài Đặt -->
+    <div class="container">
+        <h1>Dự Toán Nhanh Chi Phí Xây Dựng Nhà</h1>
+        <form id="estimateForm">
+            <label for="projectName">Tên Công Trình:</label> <!-- Added label -->
+            <input type="text" id="projectName" placeholder="Nhập tên công trình" value="Công trình Nhà Ở MK Home" required> <!-- Set default value -->
+
+            <label for="length">Chiều dài nhà (m):</label>
+            <input type="number" id="length" required>
+
+            <label for="width">Chiều rộng nhà (m):</label>
+            <input type="number" id="width" required>
+
+            <label for="floors">Số tầng:</label>
+            <input type="number" id="floors" required> <!-- Xóa giới hạn min và max -->
+
+            <label for="roof">Loại mái:</label>
+            <select id="roof" required>
+                <option value="30">Mái Ngói (30%)</option>
+                <option value="50">Mái Bê Tông (50%)</option>
+                <option value="15">Mái Tôn (15%)</option> <!-- Added Mái Tôn -->
+            </select>
+
+            <label for="foundation">Loại móng:</label>
+            <select id="foundation" required>
+                <option value="30">Móng Đơn (30%)</option>
+                <option value="50">Móng Băng (50%)</option>
+                <option value="70">Móng Cọc (70%)</option>
+            </select>
+
+            <button type="button" id="calculateBtn">Tính Chi Phí</button>
+            <div id="progressContainer" style="display: none; margin-top: 10px;">
+                <label for="progressBar">Đang tính toán...</label>
+                <progress id="progressBar" value="0" max="100" style="width: 100%;"></progress>
+            </div>
+        </form>
+        <div id="result">
+            <h2>Kết Quả</h2>
+            <h3 style="text-align: center; margin-top: 20px;">BẢNG BẢO GIÁ CHI PHÍ XÂY DỰNG NHÀ</h3> <!-- Added title -->
+            <p style="text-align: center; font-style: italic; color: gray;">(Không bao gồm nội thất rời)</p> <!-- Updated note -->
+            <div id="floorAreas"></div>
+            <div id="totalArea"></div>
+            <div id="adjustedArea"></div> <!-- Added for area with percentage -->
+            <div id="estimatedCost"></div>
+            <div id="materialEstimates"></div>
+        </div>
+    </div>
+    <div id="settingsPopup">
+        <h2>Cài Đặt</h2>
+        <label for="costPerSquareMeter">Đơn Giá (VND/m²):</label>
+        <input type="number" id="costPerSquareMeter" value="6000000" required>
+
+        <label for="roofFactors">Hệ Số % Loại Mái:</label>
+        <textarea id="roofFactors" rows="3" required>
+Mái Ngói:30
+Mái Bê Tông:50
+Mái Tôn:15
+        </textarea>
+
+        <label for="foundationFactors">Hệ Số % Loại Móng:</label>
+        <textarea id="foundationFactors" rows="3" required>
+Móng Đơn:30
+Móng Băng:50
+Móng Cọc:70
+        </textarea>
+
+        <button type="button" id="saveSettingsBtn">Lưu Cài Đặt</button>
+        <button type="button" id="closeSettingsPopup">Đóng</button>
+    </div>
+    <div id="historyPopup">
+        <h2>Lịch Sử Đã Tính</h2>
+        <ul id="popupHistoryList"></ul>
+        <button id="clearAllHistoryBtn" style="margin-top: 20px;">Xóa Tất Cả Lịch Sử</button> <!-- Button to clear all history -->
+        <button id="closeHistoryPopup">Đóng</button>
+    </div>
+    <div id="printTitle">BẢNG BẢO GIÁ CHI PHÍ XÂY DỰNG NHÀ</div> <!-- Tiêu đề mới -->
+    <button type="button" id="exportBtn" style="display: none; margin-top: 20px;">Xuất Kết Quả</button> <!-- Moved to the end -->
+    <button type="button" id="exportExcelBtn" style="display: none; margin-top: 20px;">Xuất Excel</button> <!-- Button to export to Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> <!-- Added jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script> <!-- Added XLSX library -->
+    <script src="script.js"></script>
+</body>
+</html>

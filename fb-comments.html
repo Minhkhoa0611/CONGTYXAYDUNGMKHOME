@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+            <script src="maintenance.js" defer></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góp Ý</title>
+    <link rel="icon" href="Logo2.png" type="image/png"> <!-- Set Logo2.png as favicon -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5dc; /* Beige background */
+        }
+        .fb-comments-container {
+            margin: 50px auto;
+            max-width: 800px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #fffaf0, #f5f5dc); /* Beige gradient */
+            border: 1px solid #d1bfa7;
+        }
+        .fb-comments-container img {
+            height: 80px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .fb-comments-container h3 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #8b4513; /* SaddleBrown for text */
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(139, 69, 19, 0.3);
+        }
+        .fb-comments {
+            border-top: 2px solid #d1bfa7;
+            padding-top: 20px;
+            overflow-x: hidden;
+        }
+        .fb-comments-container .fb-comments {
+            background-color: #fffaf0; /* Light beige */
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .fb-comments-container .fb-comments:hover {
+            background-color: #f5f5dc; /* Slightly darker beige on hover */
+        }
+        .anonymous-note {
+            font-size: 14px;
+            color: #8b4513; /* SaddleBrown for note */
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .back-to-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #8b4513; /* SaddleBrown */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .back-to-home:hover {
+            color: #a0522d; /* Sienna */
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-info"></div> <!-- Ensure this exists -->
+    <div class="site-footer"></div> <!-- Ensure this exists -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const contactInfoSection = document.querySelector(".contact-info");
+            const footerSection = document.querySelector(".site-footer");
+
+            if (contactInfoSection && footerSection) {
+                const fbCommentsHTML = `
+                    <div id="fb-root"></div>
+                    <div class="fb-comments-container">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <img src="Logo.png" alt="MK Logo">
+                        </div>
+                        <h3>Ý Kiến Khách Hàng</h3>
+                        <div class="fb-comments" 
+                             data-href="https://www.xaydungminhkhoa.online" 
+                             data-width="100%" 
+                             data-numposts="5">
+                        </div>
+                        <div class="anonymous-note">
+                            Bạn có thể để lại ý kiến ẩn danh nếu không muốn đăng nhập.
+                        </div>
+                        <a href="index.html" class="back-to-home">Quay Lại Trang Chủ</a>
+                    </div>
+                `;
+                contactInfoSection.insertAdjacentHTML("afterend", fbCommentsHTML);
+
+                // Load Facebook SDK
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            } else {
+                console.error("Required elements '.contact-info' or '.site-footer' are missing.");
+            }
+        });
+    </script>
+</body>
+</html>

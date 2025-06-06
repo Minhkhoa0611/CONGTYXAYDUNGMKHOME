@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #0078d7;
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+header .logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+section {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    color: #0078d7;
+    margin-bottom: 10px;
+}
+
+section article p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+section ul li {
+    margin: 10px 0;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: flex;
+    align-items: center; /* Đảm bảo căn giữa theo chiều dọc */
+    gap: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left; /* Đảm bảo căn trái */
+}
+
+section ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #b2ebf2, #ce93d8);
+}
+
+section ul li::before {
+    content: "🔗";
+    font-size: 20px;
+    color: #0078d7;
+}
+
+section ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    flex-grow: 1;
+    font-size: 16px;
+    white-space: nowrap; /* Ngăn xuống dòng không cần thiết */
+}
+
+section ul li a:hover {
+    color: #0078d7;
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+footer .container p {
+    margin: 0;
+    font-size: 14px;
+}

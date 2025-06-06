@@ -1,0 +1,385 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif; /* Sử dụng font hiện đại */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5dc; /* Màu nền màu be */
+    color: #4b4b4b; /* Màu chữ tối hơn để phù hợp với nền */
+}
+
+.container {
+    max-width: 700px; /* Tăng chiều rộng */
+    margin: 50px auto;
+    background: #fffaf0; /* Màu nền trắng ngà */
+    padding: 25px;
+    border-radius: 10px; /* Bo góc mềm mại */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng nhẹ */
+    border: 1px solid #d2b48c; /* Đường viền màu nâu nhạt */
+}
+
+h1 {
+    text-align: center;
+    color: #8b4513; /* Màu nâu đậm nổi bật */
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #6b4226; /* Màu nâu nhạt hơn */
+}
+
+input, select, button {
+    margin-top: 8px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #d2b48c; /* Viền màu nâu nhạt */
+    border-radius: 6px;
+    transition: all 0.3s ease; /* Hiệu ứng chuyển đổi */
+}
+
+input:focus, select:focus {
+    border-color: #8b4513; /* Đổi màu viền khi focus thành nâu đậm */
+    outline: none;
+    box-shadow: 0 0 5px rgba(139, 69, 19, 0.5); /* Hiệu ứng ánh sáng nâu đậm */
+}
+
+button {
+    margin-top: 20px;
+    background-color: #d2b48c; /* Màu nâu nhạt */
+    color: #fff; /* Chữ màu trắng */
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #8b4513; /* Màu nâu đậm hơn khi hover */
+}
+
+#result {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+table th {
+    background-color: #d2b48c; /* Màu nền tiêu đề bảng màu nâu nhạt */
+    color: white; /* Chữ màu trắng */
+    font-weight: bold;
+    text-align: center;
+}
+
+table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table tr:nth-child(even) {
+    background-color: #fdf5e6; /* Màu nền xen kẽ màu be nhạt */
+}
+
+table tr:hover {
+    background-color: #f5deb3; /* Hiệu ứng hover màu be đậm hơn */
+}
+
+p {
+    font-size: 14px;
+    color: #6b4226; /* Màu chữ phụ màu nâu nhạt */
+    line-height: 1.6;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#exportBtn {
+    display: block; /* Đảm bảo nút hiển thị */
+    margin: 30px auto 0; /* Căn giữa theo chiều ngang và cách trên 30px */
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #d2b48c; /* Màu nâu nhạt */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#exportBtn:hover {
+    background-color: #8b4513; /* Màu nâu đậm hơn khi hover */
+}
+
+#exportExcelBtn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #28a745; /* Green color for export button */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#exportExcelBtn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+#settingsForm {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fffaf0; /* Màu nền trắng ngà */
+    border: 1px solid #d2b48c; /* Viền màu nâu nhạt */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#settingsForm h2 {
+    text-align: center;
+    color: #8b4513; /* Màu nâu đậm */
+    margin-bottom: 15px;
+}
+
+#settingsForm label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #6b4226; /* Màu nâu nhạt */
+}
+
+#settingsForm textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d2b48c;
+    border-radius: 6px;
+    resize: none;
+}
+
+#saveSettingsBtn {
+    margin-top: 15px;
+    background-color: #d2b48c; /* Màu nâu nhạt */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+#saveSettingsBtn:hover {
+    background-color: #8b4513; /* Màu nâu đậm hơn khi hover */
+}
+
+#historySection {
+    display: none; /* Ẩn hoàn toàn phần lịch sử trong giao diện */
+}
+
+#historyBtn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #d2b48c; /* Màu nâu nhạt */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+#historyBtn:hover {
+    background-color: #8b4513; /* Màu nâu đậm hơn khi hover */
+}
+
+#historyPopup {
+    display: none; /* Ẩn popup mặc định */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background-color: #fffaf0; /* Màu nền trắng ngà */
+    border: 1px solid #d2b48c; /* Viền màu nâu nhạt */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    padding: 20px;
+    cursor: default; /* Default cursor unless dragging */
+    user-select: none; /* Prevent text selection while dragging */
+}
+
+#historyPopup h2 {
+    text-align: center;
+    color: #8b4513; /* Màu nâu đậm */
+    margin-bottom: 15px;
+}
+
+#historyPopup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#historyPopup ul li {
+    padding: 10px;
+    border-bottom: 1px solid #d2b48c; /* Viền dưới màu nâu nhạt */
+    color: #4b4b4b; /* Màu chữ */
+}
+
+#historyPopup ul li:last-child {
+    border-bottom: none; /* Xóa viền dưới cho mục cuối */
+}
+
+#closeHistoryPopup {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #d2b48c; /* Màu nâu nhạt */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+#closeHistoryPopup:hover {
+    background-color: #8b4513; /* Màu nâu đậm hơn khi hover */
+}
+
+#popupHistoryList button.deleteHistoryBtn {
+    background-color: #d9534f; /* Red color for delete button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+#popupHistoryList button.deleteHistoryBtn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+#clearAllHistoryBtn {
+    background-color: #d9534f; /* Red color for clear all button */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#clearAllHistoryBtn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+#settingsBtn {
+    position: fixed;
+    top: 10px;
+    left: 100px; /* Đặt sau nút Lịch Sử */
+    background-color: #d2b48c; /* Màu nâu nhạt */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+#settingsBtn:hover {
+    background-color: #8b4513; /* Màu nâu đậm hơn khi hover */
+}
+
+#settingsPopup {
+    display: none; /* Ẩn popup mặc định */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background-color: #fffaf0; /* Màu nền trắng ngà */
+    border: 1px solid #d2b48c; /* Viền màu nâu nhạt */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    padding: 20px;
+    cursor: default; /* Default cursor unless dragging */
+    user-select: none; /* Prevent text selection while dragging */
+}
+
+#settingsPopup h2 {
+    text-align: center;
+    color: #8b4513; /* Màu nâu đậm */
+    margin-bottom: 15px;
+}
+
+#settingsPopup label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #6b4226; /* Màu nâu nhạt */
+}
+
+#settingsPopup textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d2b48c;
+    border-radius: 6px;
+    resize: none;
+}
+
+#settingsPopup button {
+    margin-top: 15px;
+    background-color: #d2b48c; /* Màu nâu nhạt */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+#settingsPopup button:hover {
+    background-color: #8b4513; /* Màu nâu đậm hơn khi hover */
+}
+
+@media print {
+    #exportBtn {
+        display: none; /* Ẩn nút Xuất Kết Quả khi in */
+    }
+}

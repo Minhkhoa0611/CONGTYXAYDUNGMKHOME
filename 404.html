@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bảo trì hệ thống</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Xóa meta refresh, dùng JS để kiểm tra thời gian và chuyển hướng -->
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        body { 
+            min-height: 100vh;
+            min-width: 100vw;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: linear-gradient(135deg, #f8b500 0%, #fceabb 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            overflow: hidden;
+            zoom: 0.75;
+            -webkit-transform: scale(0.75);
+            -webkit-transform-origin: center center;
+        }
+        .main-center-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bg-gear {
+            position: fixed;
+            z-index: 0;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+            background: rgba(255,255,255,0.97);
+            padding: 56px 48px 48px 48px;
+            border-radius: 22px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.13);
+            max-width: 900px;
+            width: 900px;
+            min-height: 420px;
+            display: flex;
+            flex-direction: row;
+            align-items: center; /* căn giữa theo chiều dọc */
+            justify-content: center; /* căn giữa theo chiều ngang */
+            gap: 48px;
+            animation: fadeIn 1.2s;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .container-content {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .container-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* căn giữa icon theo chiều dọc */
+            min-width: 220px;
+            height: 100%;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .icon {
+            font-size: 90px;
+            color: #e67e22;
+            margin-bottom: 22px;
+            animation: spin 2.5s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(-10deg);}
+            50% { transform: rotate(10deg);}
+            100% { transform: rotate(-10deg);}
+        }
+        h1 {
+            color: #e67e22;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            color: #2980b9;
+            font-size: 1.18rem;
+            margin-bottom: 22px;
+            font-weight: 500;
+        }
+        p {
+            color: #444;
+            font-size: 1.13rem;
+            margin-bottom: 0;
+            line-height: 1.7;
+        }
+        .reason-list {
+            text-align: left;
+            margin: 28px 0 0 0;
+            padding: 0 0 0 22px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        .date {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        .domain-info {
+            margin-top: 24px;
+            text-align: left;
+            font-size: 1.08rem;
+            color: #444;
+            background: linear-gradient(90deg, #fffbe7 60%, #ffe0b2 100%);
+            border-radius: 14px;
+            padding: 18px 24px 14px 24px;
+            box-shadow: 0 2px 12px rgba(230,126,34,0.10);
+            border-left: 6px solid #e67e22;
+        }
+        .domain-label {
+            font-weight: bold;
+            color: #e67e22;
+        }
+        .domain-current {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .domain-status {
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .domain-expiry {
+            font-weight: bold;
+            color: #e67e22;
+        }
+        .domain-contact {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        .visit-btn {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 14px 38px;
+            background: linear-gradient(90deg, #f8b500 60%, #e67e22 100%);
+            color: #fff;
+            font-size: 1.13rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 2px 12px rgba(230,126,34,0.11);
+            transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+        .visit-btn:hover {
+            background: linear-gradient(90deg, #e67e22 60%, #f8b500 100%);
+            box-shadow: 0 4px 18px rgba(230,126,34,0.18);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .tech-support {
+            margin-top: 32px;
+            color: #888;
+            font-size: 1.05rem;
+            text-align: left;
+            border-top: 1px dashed #e67e22;
+            padding-top: 16px;
+        }
+        .tech-support b {
+            color: #e67e22;
+        }
+        .gear-outer {
+            position: fixed;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.13;
+        }
+        @keyframes gear-rotate {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        @keyframes gear-rotate-rev {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(-360deg);}
+        }
+        /* Loại bỏ responsive cho mobile */
+        /* @media (max-width: 480px) {
+            .container {
+                padding: 28px 8px 24px 8px;
+                max-width: 98vw;
+            }
+            .icon { font-size: 48px; }
+        } */
+    </style>
+</head>
+<body>
+    <!-- Thêm nhiều SVG bánh răng khắp màn hình -->
+    <div class="gear-outer" style="top:32px;left:48px;width:90px;height:90px;animation:gear-rotate 6s linear infinite;">
+        <svg width="90" height="90" viewBox="0 0 90 90"><g><circle cx="45" cy="45" r="32" fill="#e67e22"/><g><rect x="41" y="7" width="8" height="18" rx="4" fill="#e67e22"/><rect x="41" y="65" width="8" height="18" rx="4" fill="#e67e22"/><rect x="65" y="41" width="18" height="8" rx="4" fill="#e67e22"/><rect x="7" y="41" width="18" height="8" rx="4" fill="#e67e22"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:32px;right:48px;width:90px;height:90px;animation:gear-rotate-rev 7s linear infinite;">
+        <svg width="90" height="90" viewBox="0 0 90 90"><g><circle cx="45" cy="45" r="32" fill="#e67e22"/><g><rect x="41" y="7" width="8" height="18" rx="4" fill="#e67e22"/><rect x="41" y="65" width="8" height="18" rx="4" fill="#e67e22"/><rect x="65" y="41" width="18" height="8" rx="4" fill="#e67e22"/><rect x="7" y="41" width="18" height="8" rx="4" fill="#e67e22"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="bottom:32px;left:48px;width:70px;height:70px;animation:gear-rotate 8s linear infinite;">
+        <svg width="70" height="70" viewBox="0 0 70 70"><g><circle cx="35" cy="35" r="24" fill="#2980b9"/><g><rect x="33" y="4" width="4" height="12" rx="2" fill="#2980b9"/><rect x="33" y="54" width="4" height="12" rx="2" fill="#2980b9"/><rect x="54" y="33" width="12" height="4" rx="2" fill="#2980b9"/><rect x="4" y="33" width="12" height="4" rx="2" fill="#2980b9"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="bottom:32px;right:48px;width:70px;height:70px;animation:gear-rotate-rev 9s linear infinite;">
+        <svg width="70" height="70" viewBox="0 0 70 70"><g><circle cx="35" cy="35" r="24" fill="#2980b9"/><g><rect x="33" y="4" width="4" height="12" rx="2" fill="#2980b9"/><rect x="33" y="54" width="4" height="12" rx="2" fill="#2980b9"/><rect x="54" y="33" width="12" height="4" rx="2" fill="#2980b9"/><rect x="4" y="33" width="12" height="4" rx="2" fill="#2980b9"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:60px;left:60px;width:50px;height:50px;animation:gear-rotate 7s linear infinite;">
+        <svg width="50" height="50" viewBox="0 0 50 50"><g><circle cx="25" cy="25" r="16" fill="#f8b500"/><g><rect x="23" y="2" width="4" height="8" rx="2" fill="#f8b500"/><rect x="23" y="40" width="4" height="8" rx="2" fill="#f8b500"/><rect x="40" y="23" width="8" height="4" rx="2" fill="#f8b500"/><rect x="2" y="23" width="8" height="4" rx="2" fill="#f8b500"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:60px;right:120px;width:60px;height:60px;animation:gear-rotate-rev 10s linear infinite;">
+        <svg width="60" height="60" viewBox="0 0 60 60"><g><circle cx="30" cy="30" r="18" fill="#e67e22"/><g><rect x="28" y="4" width="4" height="10" rx="2" fill="#e67e22"/><rect x="28" y="46" width="4" height="10" rx="2" fill="#e67e22"/><rect x="46" y="28" width="10" height="4" rx="2" fill="#e67e22"/><rect x="4" y="28" width="10" height="4" rx="2" fill="#e67e22"/></g></g></svg>
+    </div>
+    <!-- Thêm nhiều bánh răng nhỏ khắp màn hình -->
+    <div class="gear-outer" style="top:10%;left:20%;width:40px;height:40px;animation:gear-rotate 5s linear infinite;">
+        <svg width="40" height="40" viewBox="0 0 40 40"><g><circle cx="20" cy="20" r="12" fill="#e67e22"/><g><rect x="18" y="2" width="4" height="8" rx="2" fill="#e67e22"/><rect x="18" y="30" width="4" height="8" rx="2" fill="#e67e22"/><rect x="30" y="18" width="8" height="4" rx="2" fill="#e67e22"/><rect x="2" y="18" width="8" height="4" rx="2" fill="#e67e22"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:20%;left:70%;width:30px;height:30px;animation:gear-rotate-rev 4s linear infinite;">
+        <svg width="30" height="30" viewBox="0 0 30 30"><g><circle cx="15" cy="15" r="8" fill="#2980b9"/><g><rect x="14" y="1" width="2" height="6" rx="1" fill="#2980b9"/><rect x="14" y="23" width="2" height="6" rx="1" fill="#2980b9"/><rect x="23" y="14" width="6" height="2" rx="1" fill="#2980b9"/><rect x="1" y="14" width="6" height="2" rx="1" fill="#2980b9"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:80%;left:15%;width:35px;height:35px;animation:gear-rotate 6s linear infinite;">
+        <svg width="35" height="35" viewBox="0 0 35 35"><g><circle cx="17.5" cy="17.5" r="10" fill="#f8b500"/><g><rect x="16" y="2" width="3" height="6" rx="1.5" fill="#f8b500"/><rect x="16" y="27" width="3" height="6" rx="1.5" fill="#f8b500"/><rect x="27" y="16" width="6" height="3" rx="1.5" fill="#f8b500"/><rect x="2" y="16" width="6" height="3" rx="1.5" fill="#f8b500"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:60%;left:80%;width:45px;height:45px;animation:gear-rotate-rev 8s linear infinite;">
+        <svg width="45" height="45" viewBox="0 0 45 45"><g><circle cx="22.5" cy="22.5" r="14" fill="#e67e22"/><g><rect x="21" y="2" width="3" height="8" rx="1.5" fill="#e67e22"/><rect x="21" y="35" width="3" height="8" rx="1.5" fill="#e67e22"/><rect x="35" y="21" width="8" height="3" rx="1.5" fill="#e67e22"/><rect x="2" y="21" width="8" height="3" rx="1.5" fill="#e67e22"/></g></g></svg>
+    </div>
+    <!-- Thêm nhiều bánh răng nữa, ví dụ copy-paste các dòng trên và thay đổi vị trí, kích thước, màu sắc, tốc độ... -->
+    <!-- Dưới đây là ví dụ thêm nhiều bánh răng nhỏ nữa để đủ ~50 cái -->
+    <div class="gear-outer" style="top:5%;left:50%;width:25px;height:25px;animation:gear-rotate 3s linear infinite;">
+        <svg width="25" height="25" viewBox="0 0 25 25"><g><circle cx="12.5" cy="12.5" r="7" fill="#2980b9"/><g><rect x="12" y="1" width="1" height="4" rx="0.5" fill="#2980b9"/><rect x="12" y="20" width="1" height="4" rx="0.5" fill="#2980b9"/><rect x="20" y="12" width="4" height="1" rx="0.5" fill="#2980b9"/><rect x="1" y="12" width="4" height="1" rx="0.5" fill="#2980b9"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:30%;left:30%;width:28px;height:28px;animation:gear-rotate-rev 5s linear infinite;">
+        <svg width="28" height="28" viewBox="0 0 28 28"><g><circle cx="14" cy="14" r="8" fill="#e67e22"/><g><rect x="13" y="2" width="2" height="5" rx="1" fill="#e67e22"/><rect x="13" y="21" width="2" height="5" rx="1" fill="#e67e22"/><rect x="21" y="13" width="5" height="2" rx="1" fill="#e67e22"/><rect x="2" y="13" width="5" height="2" rx="1" fill="#e67e22"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:40%;left:60%;width:32px;height:32px;animation:gear-rotate 6s linear infinite;">
+        <svg width="32" height="32" viewBox="0 0 32 32"><g><circle cx="16" cy="16" r="9" fill="#f8b500"/><g><rect x="15" y="2" width="2" height="6" rx="1" fill="#f8b500"/><rect x="15" y="24" width="2" height="6" rx="1" fill="#f8b500"/><rect x="24" y="15" width="6" height="2" rx="1" fill="#f8b500"/><rect x="2" y="15" width="6" height="2" rx="1" fill="#f8b500"/></g></g></svg>
+    </div>
+    <div class="gear-outer" style="top:70%;left:40%;width:36px;height:36px;animation:gear-rotate-rev 7s linear infinite;">
+        <svg width="36" height="36" viewBox="0 0 36 36"><g><circle cx="18" cy="18" r="10" fill="#2980b9"/><g><rect x="17" y="2" width="2" height="6" rx="1" fill="#2980b9"/><rect x="17" y="28" width="2" height="6" rx="1" fill="#2980b9"/><rect x="28" y="17" width="6" height="2" rx="1" fill="#2980b9"/><rect x="2" y="17" width="6" height="2" rx="1" fill="#2980b9"/></g></g></svg>
+    </div>
+    <!-- ...repeat similar divs with different positions, sizes, colors, and animation durations... -->
+    <!-- Để đủ 50 cái, hãy copy các dòng trên và thay đổi top/left/right/bottom, width/height, màu sắc, tốc độ... -->
+    <div class="bg-gear">
+        <!-- ...existing SVG code... -->
+    </div>
+    <div class="main-center-wrapper">
+        <div class="container">
+            <div class="container-side">
+                <div class="icon">🛠️</div>
+            </div>
+            <div class="container-content">
+                <h1>Hệ thống đang bảo trì</h1>
+                <div class="subtitle">Chúng tôi đang nâng cấp để phục vụ bạn tốt hơn!</div>
+                <p>
+                    Hệ thống sẽ được bảo trì từ ngày <span class="date">06/06/2025</span> đến hết ngày <span class="date">30/06/2025</span>.<br>
+                    <b>Vui lòng quay lại sau!</b>
+                </p>
+                <ul class="reason-list">
+                    <li>Gia hạn hoặc thay đổi mã miền</li>
+                    <li>Thay đổi hosting</li>
+                    <li>Nâng cấp hệ thống, tối ưu tốc độ và bảo mật</li>
+                </ul>
+                <div class="domain-info">
+                    <span class="domain-label">Thông tin mã miền:</span><br>
+                    Tên miền hiện tại: <span class="domain-current">www.xaydungminhkhoa.online</span><br>
+                    Trạng thái: <span class="domain-status">Đang chờ gia hạn/thay đổi</span><br>
+                    Ngày hết hạn: <span class="domain-expiry">30/06/2025</span><br>
+                    Mọi thắc mắc vui lòng liên hệ: <a href="mailto:support@xaydungminhkhoa.online" class="domain-contact">support@xaydungminhkhoa.online</a>
+                </div>
+                <div style="margin-top:18px;">
+                    <div style="color:#e67e22; font-size:1.05rem; margin-bottom:10px;">
+                        <b>TRONG THỜI GIAN BẢO TRÌ QUÝ KHÁCH HÀNG CÓ THỂ DÙNG WEBSITE TĨNH BÊN HỆ THỐNG:</b>
+                    </div>
+                    <a href="https://minhkhoa0611.github.io/Website-MK-HOME-1/" class="visit-btn">Đến trang mới</a>
+                </div>
+                <div class="tech-support">
+                    <b>Hỗ trợ kỹ thuật:</b> Đội ngũ kỹ thuật của chúng tôi đang làm việc 24/7 để đảm bảo hệ thống hoạt động ổn định nhất.<br>
+                    Xin cảm ơn quý khách đã thông cảm và đồng hành!
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="maintenance.js"></script>
+</body>
+</html>

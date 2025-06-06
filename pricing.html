@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Giá Dịch Vụ</title>
+            <script src="maintenance.js" defer></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        #baogia {
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 1200px;
+        }
+
+        #baogia h1, #baogia h2 {
+            text-align: center;
+            color: #0055ff;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 85, 255, 0.3);
+        }
+
+        #baogia h1 {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        #baogia h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #baogia table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #baogia th, #baogia td {
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+
+        #baogia th {
+            background-color: #e6f7ff;
+            font-weight: bold;
+            color: #0055ff;
+            text-align: center;
+        }
+
+        #baogia tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        #baogia tr:hover {
+            background-color: #e0f0ff;
+            transition: background-color 0.3s;
+        }
+
+        #baogia td {
+            text-align: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            #baogia {
+                padding: 20px;
+            }
+
+            #baogia h1 {
+                font-size: 24px;
+            }
+
+            #baogia h2 {
+                font-size: 20px;
+            }
+
+            #baogia table {
+                font-size: 14px;
+            }
+
+            #baogia th, #baogia td {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #baogia {
+                padding: 15px;
+            }
+
+            #baogia h1 {
+                font-size: 20px;
+            }
+
+            #baogia h2 {
+                font-size: 18px;
+            }
+
+            #baogia table {
+                font-size: 12px;
+            }
+
+            #baogia th, #baogia td {
+                padding: 8px;
+            }
+
+            #baogia table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="baogia" class="baogia">
+        <h1>BÁO GIÁ DỊCH VỤ TƯ VẤN GIÁM SÁT - THIẾT KẾ THI CÔNG MK HOME</h1>
+        <h2>📋 Dịch vụ Giám Sát</h2>
+        <table>
+            <tr>
+                <th>Gói dịch vụ</th>
+                <th>Thời gian giám sát</th>
+                <th>Thời gian (h)/Ngày</th>
+                <th>Nhà phố</th>
+                <th>Biệt thự</th>
+            </tr>
+            <tr>
+                <td>Gói tiêu chuẩn</td>
+                <td>3 buổi/tuần</td>
+                <td>3 – 4 giờ</td>
+                <td>8.000.000đ</td>
+                <td>10.000.000đ</td>
+            </tr>
+            <tr>
+                <td>Tư vấn Giám Sát bán thời gian</td>
+                <td>5 buổi/tuần</td>
+                <td>3 – 4 giờ</td>
+                <td>12.000.000đ</td>
+                <td>14.000.000đ</td>
+            </tr>
+            <tr>
+                <td>Tư vấn Giám Sát nguyên ngày</td>
+                <td>Thứ 2 – Thứ 7</td>
+                <td>7 – 8 giờ</td>
+                <td>18.000.000đ</td>
+                <td>22.000.000đ</td>
+            </tr>
+        </table>
+        <h2>📐 Đơn Giá Thiết Kế</h2>
+        <table>
+            <tr>
+                <th>Loại Thiết Kế</th>
+                <th>Giá (đ/m²)</th>
+                <th>Bao Gồm</th>
+            </tr>
+            <tr>
+                <td>Thiết kế cơ bản</td>
+                <td>60.000</td>
+                <td>Kiến Trúc, Kết Cấu</td>
+            </tr>
+            <tr>
+                <td>Thiết kế tiêu chuẩn</td>
+                <td>90.000</td>
+                <td>Kiến Trúc, Kết Cấu, Điện Nước</td>
+            </tr>
+            <tr>
+                <td>Thiết kế cao cấp</td>
+                <td>140.000</td>
+                <td>Kiến Trúc, Kết Cấu, Điện Nước, Nội Thất</td>
+            </tr>
+            <tr>
+                <td>Thiết kế 3D phối cảnh</td>
+                <td>180.000</td>
+                <td>Kiến Trúc, Kết Cấu, Điện Nước, Nội Thất, 3D Phối Cảnh</td>
+            </tr>
+        </table>
+        <h2>📐 Dịch vụ Thi Công</h2>
+        <table>
+            <tr>
+                <th>Dịch vụ</th>
+                <th>Nhà phố</th>
+                <th>Biệt thự</th>
+            </tr>
+            <tr>
+                <td>Đơn giá thi công trọn gói (Không bao gồm Nội thất rời)</td>
+                <td>6.000.000đ/m²</td>
+                <td>6.000.000đ/m²</td>
+            </tr>
+            <tr>
+                <td>Đơn giá thi công Nhân Công (Không bao gồm Vật Tư)</td>
+                <td>2.500.000đ/m²</td>
+                <td>2.500.000đ/m²</td>
+            </tr>
+        </table>
+        <p style="text-align: center; margin-top: 20px; font-size: 16px; color: #555;">
+            <strong>Lưu ý:</strong> Đơn giá trên chỉ là tham khảo. Có thể thỏa thuận, vui lòng liên hệ: 
+            <a href="https://zalo.me/0867544809" target="_blank" style="color: #0055ff; text-decoration: underline;">0867544809</a>
+        </p>
+    </div>
+</body>
+</html>
