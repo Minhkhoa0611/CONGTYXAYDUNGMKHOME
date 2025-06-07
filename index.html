@@ -42,56 +42,267 @@
     <script src="contact-tuvan.js" defer></script> 
     <script src="footer.js" defer></script> 
     <script src="floating-contact.js" defer></script> 
-    <script src="adblock-detection.js" defer></script>
     <script src="facebook-comments.js" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-        .intro img {
-            background: none; /* Ensure no background color is applied */
-            max-width: 100%; /* Make the logo responsive */
-            height: auto; /* Maintain aspect ratio */
-            display: block; /* Center the image if needed */
-            margin: 0 auto; /* Center horizontally */
+        /* Header styles */
+        .header {
+            /* background: #0055ff;
+            color: #fff; */
+            background: none;
+            color: inherit;
+            padding: 0;
+            box-shadow: none;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        /* Xóa luôn phần header-logo, header-title, header-slogan */
+        /* .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-logo img {
+            height: 48px;
+            width: 48px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #fff;
+            padding: 4px;
+        }
+        .header-title {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .header-slogan {
+            font-size: 1rem;
+            color: #e0eaff;
+            margin-left: 8px;
+            font-style: italic;
+        } */
+        /* Xóa phần code menu tĩnh */
+        /* .header-menu {
+            display: flex;
+            gap: 24px;
+        }
+        .header-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .header-menu a:hover {
+            color: #ffd700;
+        } */
+        .contact-btn {
+            background: #ffd700;
+            color: #0055ff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s, color 0.2s;
+        }
+        .contact-btn:hover {
+            background: #fff;
+            color: #0055ff;
+        }
+        /* Intro section improvements */
+        .intro {
+            background: linear-gradient(120deg, #f0f8ff 60%, #e6f7ff 100%);
+            padding: 60px 20px 40px 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(0, 85, 255, 0.08);
+            margin: 40px auto 0 auto;
+            max-width: 1200px;
+        }
+        .intro-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+        }
+        .intro-content {
+            flex: 1 1 400px;
+            max-width: 600px;
+            text-align: left;
+        }
+        .intro-content h2 {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 2.5rem;
+            color: #0055ff;
+            margin-bottom: 12px;
+        }
+        .intro-content h2 img {
+            height: 60px;
+            width: 60px;
+            background: none;
+            margin: 0;
+        }
+        .intro-content p {
+            font-size: 1.15rem;
+            color: #222;
+            margin-bottom: 18px;
+        }
+        .intro-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .intro-content li {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 12px;
+            padding-left: 32px;
+            position: relative;
+        }
+        .intro-content li .fa {
+            color: #0055ff;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+        /* Right-side image/visual */
+        .intro-visual {
+            flex: 1 1 320px;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .intro-visual img {
+            width: 100%;
+            max-width: 340px;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,85,255,0.10);
+        }
+        @media (max-width: 900px) {
+            .intro-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+            }
+            .intro-content, .intro-visual {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
-
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2L93K7N"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
      
-    <section class="intro" style="background: linear-gradient(to right, #f0f8ff, #e6f7ff); padding: 50px 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin: 30px auto; max-width: 1200px;">
-        <div class="container intro-section" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; text-align: center; gap: 20px;">
-            <div class="intro-content" style="flex: 1; max-width: 600px;">
-                <h2 style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                    <img src="Logo.png" alt="MKHOME Logo">
-                    <span style="font-size: 48px; font-weight: bold; color: #0055ff; text-shadow: 2px 2px 4px rgba(0, 85, 255, 0.3);">
-                        MK HOME
-                    </span>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Xóa logo, sologan và nút tư vấn -->
+            <!--
+            <div class="header-logo">
+                <img src="Logo.png" alt="MK HOME Logo">
+                <span class="header-title">MK HOME</span>
+                <span class="header-slogan">Kiến tạo không gian sống bền vững</span>
+            </div>
+            -->
+            <nav id="header-menu"></nav>
+            <!-- <button class="contact-btn" onclick="window.location.href='#contact'">
+                <i class="fa fa-phone"></i> Tư vấn ngay
+            </button> -->
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <section class="intro">
+        <div class="container intro-section">
+            <div class="intro-content">
+                <h2 style="display: flex; align-items: center; gap: 18px; font-size: 2.2rem; color: #0055ff; margin-bottom: 14px;">
+                    <span style="display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; background:#e3f2fd; border-radius:50%;"><i class="fa fa-hard-hat" style="color:#0055ff; font-size:1.6rem;"></i></span>
+                    <span>MK HOME</span>
                 </h2>
-                <p style="font-size: 18px; line-height: 1.6; color: #333; margin-bottom: 20px;">
-                    <strong>Tự hào là đơn vị hàng đầu trong lĩnh vực thiết kế và xây dựng tại Nha Trang</strong>, mang đến cho khách hàng những giải pháp tối ưu từ khâu ý tưởng đến khi hoàn thiện.
+                <p style="font-size: 1.18rem; color: #1a237e; margin-bottom: 18px; font-weight: 500;">
+                    <span style="background: #e3f2fd; padding: 4px 14px; border-radius: 8px; display:inline-block;">
+                        <i class="fa fa-building" style="margin-right:8px; color:#1976d2;"></i>
+                        Đơn vị <b>chuyên nghiệp</b> trong lĩnh vực <b>thiết kế & thi công xây dựng</b> tại Nha Trang và Khánh Hòa.
+                    </span>
                 </p>
+                <div style="font-size: 1.07rem; color: #333; margin-bottom: 18px; line-height:1.7;">
+                    <i class="fa fa-quote-left" style="color:#0055ff; margin-right:6px;"></i>
+                    Chúng tôi mang đến giải pháp toàn diện từ ý tưởng, thiết kế, pháp lý đến thi công hoàn thiện, đảm bảo chất lượng, tiến độ và chi phí tối ưu cho khách hàng.
+                    <i class="fa fa-quote-right" style="color:#0055ff; margin-left:6px;"></i>
+                </div>
                 <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="font-size: 16px; color: #555; margin-bottom: 10px; padding-left: 20px; position: relative;">
-                        <span style="color: #0055ff; font-size: 18px; position: absolute; left: 0; top: 0;">✔</span>
-                        Chúng tôi cam kết mang đến những công trình vững chắc, thẩm mỹ và bền vững với thời gian.
+                    <li style="margin-bottom: 14px; display: flex; align-items: flex-start;">
+                        <span style="color: #388e3c; margin-right: 14px; font-size:1.25rem;"><i class="fa fa-shield-alt"></i></span>
+                        <span>Cam kết <b>an toàn, bền vững</b> cho mọi công trình.</span>
                     </li>
-                    <li style="font-size: 16px; color: #555; margin-bottom: 10px; padding-left: 20px; position: relative;">
-                        <span style="color: #0055ff; font-size: 18px; position: absolute; left: 0; top: 0;">✔</span>
-                        Với đội ngũ kiến trúc sư, kỹ sư và thợ thi công lành nghề, chúng tôi đảm bảo mỗi dự án đều được thực hiện với sự tận tâm và chính xác cao nhất.
+                    <li style="margin-bottom: 14px; display: flex; align-items: flex-start;">
+                        <span style="color: #1976d2; margin-right: 14px; font-size:1.25rem;"><i class="fa fa-users-cog"></i></span>
+                        <span>Đội ngũ <b>kiến trúc sư, kỹ sư</b> giàu kinh nghiệm, sáng tạo và tận tâm.</span>
                     </li>
-                    <li style="font-size: 16px; color: #555; margin-bottom: 10px; padding-left: 20px; position: relative;">
-                        <span style="color: #0055ff; font-size: 18px; position: absolute; left: 0; top: 0;">✔</span>
-                        Dựa trên nhu cầu của khách hàng, chúng tôi tạo ra những không gian đẹp mắt, tiện nghi và mang tính cá nhân hóa cao.
+                    <li style="margin-bottom: 14px; display: flex; align-items: flex-start;">
+                        <span style="color: #fbc02d; margin-right: 14px; font-size:1.25rem;"><i class="fa fa-drafting-compass"></i></span>
+                        <span>Thiết kế <b>hiện đại, tối ưu công năng</b> và thẩm mỹ.</span>
                     </li>
-                    <li style="font-size: 16px; color: #555; margin-bottom: 10px; padding-left: 20px; position: relative;">
-                        <span style="color: #0055ff; font-size: 18px; position: absolute; left: 0; top: 0;">✔</span>
-                        Từ thiết kế, tư vấn pháp lý đến thi công và hoàn thiện, chúng tôi cung cấp một quy trình khép kín giúp khách hàng tiết kiệm thời gian và chi phí.
+                    <li style="margin-bottom: 14px; display: flex; align-items: flex-start;">
+                        <span style="color: #d84315; margin-right: 14px; font-size:1.25rem;"><i class="fa fa-sync-alt"></i></span>
+                        <span>Quy trình <b>khép kín</b>, hỗ trợ pháp lý, tiết kiệm thời gian & chi phí.</span>
                     </li>
                 </ul>
+            </div>
+            <div class="intro-visual" style="position: relative; width: 100%; min-height: 520px; max-width: 900px; margin: 0 auto;">
+                <!-- Image 1: nhỏ, lệch trái trên -->
+                <img src="image1.png" alt="Công trình 1"
+                    style="position: absolute; left: 0; top: 30px; width: 180px; height: 120px; object-fit: cover; border-radius: 24px 60px 24px 40px/40px 80px 40px 80px; box-shadow: 0 8px 32px rgba(0,85,255,0.10); z-index: 2;">
+                <!-- Image 2: nhỏ, lệch phải trên -->
+                <img src="image2.png" alt="Công trình 2"
+                    style="position: absolute; right: 0; top: 0; width: 180px; height: 120px; object-fit: cover; border-radius: 40px 18px 40px 18px/60px 30px 60px 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.13); transform: rotate(10deg); z-index: 2;">
+                <!-- Image 3: nhỏ, giữa trên, nghiêng -->
+                <img src="image3.png" alt="Công trình 3"
+                    style="position: absolute; left: 50%; top: 0; width: 140px; height: 90px; object-fit: cover; border-radius: 18px 40px 18px 40px/30px 60px 30px 60px; box-shadow: 0 3px 10px rgba(0,0,0,0.10); transform: translateX(-50%) rotate(-8deg); z-index: 2;">
+                <!-- Image 4: nhỏ, giữa dưới, nghiêng -->
+                <img src="image4.png" alt="Công trình 4"
+                    style="position: absolute; left: 45%; bottom: 10px; width: 120px; height: 80px; object-fit: cover; border-radius: 30px 30px 30px 30px/40px 40px 40px 40px; box-shadow: 0 3px 10px rgba(0,0,0,0.10); transform: translateX(-40%) rotate(6deg); z-index: 2;">
+                <!-- Image 5: nhỏ, lệch phải dưới -->
+                <img src="image5.png" alt="Công trình 5"
+                    style="position: absolute; right: 30px; bottom: 40px; width: 110px; height: 70px; object-fit: cover; border-radius: 18px 40px 18px 40px/30px 60px 30px 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); transform: rotate(-12deg); z-index: 2;">
+                <!-- Image 6: nhỏ, lệch trái dưới -->
+                <img src="image6.png" alt="Công trình 6"
+                    style="position: absolute; left: 30px; bottom: 0; width: 100px; height: 70px; object-fit: cover; border-radius: 40px 18px 40px 18px/60px 30px 60px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); transform: rotate(8deg); z-index: 2;">
+                <!-- Image 7: nhỏ, giữa phải trên -->
+                <img src="image7.png" alt="Công trình 7"
+                    style="position: absolute; right: 120px; top: 60px; width: 120px; height: 80px; object-fit: cover; border-radius: 30px 30px 30px 30px/40px 40px 40px 40px; box-shadow: 0 3px 10px rgba(0,0,0,0.10); transform: rotate(-7deg); z-index: 2;">
+                <!-- Image 8: nhỏ, giữa trái trên -->
+                <img src="image8.png" alt="Công trình 8"
+                    style="position: absolute; left: 120px; top: 110px; width: 110px; height: 70px; object-fit: cover; border-radius: 18px 40px 18px 40px/30px 60px 30px 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); transform: rotate(12deg); z-index: 2;">
+                <!-- Image 9: nhỏ, giữa phải dưới -->
+                <img src="image9.png" alt="Công trình 9"
+                    style="position: absolute; right: 120px; bottom: 80px; width: 110px; height: 70px; object-fit: cover; border-radius: 18px 40px 18px 40px/30px 60px 30px 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); transform: rotate(-10deg); z-index: 2;">
+                <!-- Image 10: nhỏ, giữa trái dưới -->
+                <img src="image10.png" alt="Công trình 10"
+                    style="position: absolute; left: 120px; bottom: 80px; width: 110px; height: 70px; object-fit: cover; border-radius: 18px 40px 18px 40px/30px 60px 30px 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); transform: rotate(7deg); z-index: 2;">
+                <!-- Image 11: nhỏ, giữa trung tâm -->
+                <img src="image11.png" alt="Công trình 11"
+                    style="position: absolute; left: 50%; top: 180px; width: 120px; height: 80px; object-fit: cover; border-radius: 30px 30px 30px 30px/40px 40px 40px 40px; box-shadow: 0 3px 10px rgba(0,0,0,0.10); transform: translateX(-50%) rotate(-4deg); z-index: 2;">
+                <!-- Image 12: nhỏ, giữa trung tâm dưới -->
+                <img src="image12.png" alt="Công trình 12"
+                    style="position: absolute; left: 50%; bottom: 40px; width: 120px; height: 80px; object-fit: cover; border-radius: 30px 30px 30px 30px/40px 40px 40px 40px; box-shadow: 0 3px 10px rgba(0,0,0,0.10); transform: translateX(-50%) rotate(6deg); z-index: 2;">
             </div>
         </div>
     </section>
