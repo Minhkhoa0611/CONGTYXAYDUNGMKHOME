@@ -205,36 +205,19 @@ document.getElementById('download-watermark').onclick = async function() {
     };
 };
 
+// Biến toàn cục để lưu số thứ tự download
+let downloadCounter = 1;
+
 function downloadUrl(url, filename) {
+    // Thêm tiền tố ngày giờ và số thứ tự vào tên file
+    const now = new Date();
+    const prefix = now.toISOString().replace(/[-:T]/g, '').slice(0, 12); // yyyyMMddhhmm
+    const newFilename = `${prefix}_${downloadCounter}_${filename}`;
+    downloadCounter++;
     const a = document.createElement('a');
     a.href = url;
-    a.download = filename;
+    a.download = newFilename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const desktopBtn = document.getElementById('desktop-mode-btn');
-    const mobileBtn = document.getElementById('mobile-mode-btn');
-    if (desktopBtn && mobileBtn) {
-        desktopBtn.onclick = function() {
-            document.body.classList.add('force-desktop');
-            document.body.classList.remove('force-mobile');
-            desktopBtn.classList.add('active');
-            mobileBtn.classList.remove('active');
-        };
-        mobileBtn.onclick = function() {
-            document.body.classList.add('force-mobile');
-            document.body.classList.remove('force-desktop');
-            mobileBtn.classList.add('active');
-            desktopBtn.classList.remove('active');
-        };
-        // Auto highlight current mode
-        if(document.body.classList.contains('force-mobile')) {
-            mobileBtn.classList.add('active');
-        } else if(document.body.classList.contains('force-desktop')) {
-            desktopBtn.classList.add('active');
-        }
-    }
-});
