@@ -40,9 +40,11 @@ document.getElementById('ai-form').addEventListener('submit', async function(e) 
     // Hàm gọi API ClipDrop với lựa chọn API key theo server
     async function generateImage(promptText, server) {
         const apiUrl = "https://clipdrop-api.co/text-to-image/v1";
-        let apiKey = "9d533868aa2d48c45fceb4798236b38e2097a37414ac2a8365ffd75952feb2db101cda7c7645f54aa5685777efa0814c";
+        let apiKey = "a6341a5f8920d9600d950c43870af22cc7c271cdd865658c7bfb906388040e84ac1876fec312b8118a1ffbe9c04acc76";
         if (server === "server2") {
             apiKey = "418e63f89d4f2ca4ad938623fc7493c50d97be3bfad45d55277b14201073e3b04e04b2fae994444666e762e41547b04b";
+        } else if (server === "server3") {
+            apiKey = "5158c09248c48a39488833739bf5187b25541ffd75f672e29fae0eb98733c7a276c441ab1ea8aed09c3f9d974890966e";
         }
         const body = { prompt: promptText };
         const response = await fetch(apiUrl, {
@@ -158,12 +160,18 @@ function showDownloadButtons(base64) {
     const btns = document.getElementById('download-buttons');
     btns.style.display = 'flex';
     document.getElementById('download-watermark').dataset.base64 = base64;
+    // Thêm base64 cho nút không watermark
+    const btnNoWatermark = document.getElementById('download-no-watermark');
+    if (btnNoWatermark) btnNoWatermark.dataset.base64 = base64;
 }
 
 function hideDownloadButtons() {
     const btns = document.getElementById('download-buttons');
     btns.style.display = 'none';
     document.getElementById('download-watermark').removeAttribute('data-base64');
+    // Ẩn cho nút không watermark
+    const btnNoWatermark = document.getElementById('download-no-watermark');
+    if (btnNoWatermark) btnNoWatermark.removeAttribute('data-base64');
 }
 
 // Download có watermark
@@ -204,6 +212,17 @@ document.getElementById('download-watermark').onclick = async function() {
         downloadUrl(url, 'ai-mkhome-watermark.png');
     };
 };
+
+// Download không watermark
+const btnNoWatermark = document.getElementById('download-no-watermark');
+if (btnNoWatermark) {
+    btnNoWatermark.onclick = function() {
+        const base64 = this.dataset.base64;
+        if (!base64) return;
+        const url = 'data:image/png;base64,' + base64;
+        downloadUrl(url, 'ai-mkhome.png');
+    };
+}
 
 // Biến toàn cục để lưu số thứ tự download
 let downloadCounter = 1;
