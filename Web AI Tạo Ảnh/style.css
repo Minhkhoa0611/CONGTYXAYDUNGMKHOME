@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%);
+    margin: 0;
+    color: #232946;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.05em;
+}
+
+.container {
+    max-width: 600px;
+    margin: 36px auto 0 auto;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px rgba(80, 80, 180, 0.10), 0 1.5px 8px rgba(80,80,180,0.08);
+    padding: 32px 28px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 340px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.logo {
+    width: 70px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 8px #6366f1aa);
+}
+
+.main-title {
+    font-size: 2.3em;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.brand-gradient {
+    background: linear-gradient(90deg, #6366f1 10%, #06b6d4 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.08em;
+    color: #6366f1;
+    margin: 10px 0 0 0;
+    font-weight: 500;
+}
+
+form#ai-form {
+    margin-top: 18px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    font-weight: 600;
+    color: #232946;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-note {
+    font-size: 0.95em;
+    color: #6b7280;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+select, textarea, input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #c7d2fe;
+    border-radius: 10px;
+    font-size: 1em;
+    margin-top: 4px;
+    background: #f8fafc;
+    transition: border 0.2s;
+    outline: none;
+    color: #232946;
+    box-sizing: border-box;
+}
+
+select:focus, textarea:focus {
+    border-color: #6366f1;
+    background: #f0fdfa;
+}
+
+textarea {
+    min-height: 70px;
+    resize: vertical;
+}
+
+button[type="submit"], #download-watermark {
+    background: linear-gradient(90deg, #6366f1 30%, #06b6d4 100%);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 0;
+    width: 100%;
+    font-size: 1.1em;
+    margin-top: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #6366f133;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.5px;
+}
+
+button[type="submit"]:hover, #download-watermark:hover {
+    background: linear-gradient(90deg, #06b6d4 10%, #6366f1 90%);
+    transform: translateY(-2px) scale(1.03);
+}
+
+#result {
+    margin-top: 32px;
+    background: linear-gradient(90deg, #f0fdfa 60%, #e0e7ff 100%);
+    border-radius: 16px;
+    padding: 18px 16px 14px 16px;
+    box-shadow: 0 2px 8px #6366f122;
+}
+
+.result-title {
+    font-size: 1.15em;
+    font-weight: 700;
+    color: #06b6d4;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.result-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-image {
+    min-height: 180px;
+    min-width: 220px;
+    background: #e0e7ff;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px #6366f122;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+#result-url {
+    margin-bottom: 8px;
+}
+
+#download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+footer {
+    margin-top: 32px;
+    text-align: center;
+    color: #6366f1;
+    font-size: 1.05em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: none;
+}
+
+a {
+    color: #06b6d4;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+a:hover {
+    color: #6366f1;
+    text-decoration: underline;
+}
+
+/* Phần giới thiệu tác giả */
+div[style*="text-align:center"] {
+    margin-top: 28px !important;
+    font-size: 1.05em !important;
+    color: #06b6d4 !important;
+    font-weight: 500;
+}
+
+/* Desktop styles (default) */
+@media (min-width: 701px) {
+    body {
+        font-size: 1.05em;
+    }
+    .container {
+        max-width: 600px;
+        min-width: 340px;
+    }
+}
+
+/* Mobile styles override using media query */
+@media (max-width: 700px), (pointer: coarse) and (max-width: 900px) {
+    body {
+        font-size: 1em;
+        padding: 0;
+    }
+    .container {
+        max-width: 100vw;
+        min-width: 0;
+        padding: 8px 0 18px 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .main-title {
+        font-size: 1.5em;
+    }
+    .subtitle {
+        font-size: 1em;
+    }
+    .result-image {
+        min-width: 120px;
+        min-height: 100px;
+    }
+    .form-group {
+        margin-bottom: 14px;
+    }
+    label, select, textarea, input, button {
+        font-size: 1em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #download-buttons button {
+        width: 100%;
+        margin-top: 8px;
+        min-width: unset;
+        padding: 11px 0;
+    }
+    .result-images {
+        flex-direction: column;
+        align-items: center;
+    }
+    .result-image {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.container {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.image-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px #6366f144;
+}
+
+.ai-watermark {
+    display: none;
+}
+
+.ai-watermark-by {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    z-index: 2;
+    color: #fff;
+    font-size: 0.98em;
+    font-weight: 400;
+    opacity: 0.85;
+    border-radius: 6px;
+    padding: 2px 10px;
+    user-select: none;
+    pointer-events: none;
+    border: none;
+}
+
+#download-buttons {
+    margin-top: 18px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+#download-buttons button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.04rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #6366f1 60%, #06b6d4 100%);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(99,102,241,0.10);
+    cursor: pointer;
+    transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+    letter-spacing: 0.5px;
+    outline: none;
+    min-width: 210px;
+    justify-content: center;
+    border: 1.5px solid #a5b4fc;
+}
+
+#download-buttons button:hover {
+    background: linear-gradient(90deg, #4f46e5 60%, #0ea5e9 100%);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 18px #6366f144;
+}
+
+#download-buttons button:active {
+    transform: scale(0.98);
+    background: linear-gradient(90deg, #6366f1 60%, #06b6d4 100%);
+}
+
+.ui-toggle {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+    z-index: 10;
+}
+
+.ui-toggle button {
+    opacity: 0.8;
+    transition: opacity 0.18s, transform 0.15s;
+    border-radius: 10px;
+    background: #f0fdfa;
+    border: 2px solid #e0e7ff;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35em;
+    box-shadow: 0 2px 8px #6366f122;
+    margin: 0;
+    padding: 0;
+}
+.ui-toggle button.active,
+.ui-toggle button:hover {
+    opacity: 1;
+    background: #e0e7ff;
+    border-color: #6366f1;
+    transform: scale(1.10);
+    box-shadow: 0 4px 16px #6366f133;
+}
+.ui-toggle button.active::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #6366f1 40%, #06b6d4 100%);
+    display: block;
+}
+
+/* Ép giao diện desktop */
+body.force-desktop {
+    font-size: 1.05em !important;
+}
+body.force-desktop .container {
+    max-width: 600px !important;
+    min-width: 340px !important;
+    border-radius: 22px !important;
+    box-shadow: 0 8px 32px rgba(80, 80, 180, 0.10), 0 1.5px 8px rgba(80,80,180,0.08) !important;
+    padding: 32px 28px 24px 28px !important;
+}
+body.force-desktop .main-title { font-size: 2.3em !important; }
+body.force-desktop .subtitle { font-size: 1.08em !important; }
+body.force-desktop .result-image { min-width: 220px !important; min-height: 180px !important; }
+
+/* Ép giao diện mobile */
+body.force-mobile {
+    font-size: 1em !important;
+}
+body.force-mobile .container {
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    padding: 8px 0 18px 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+body.force-mobile .main-title { font-size: 1.5em !important; }
+body.force-mobile .subtitle { font-size: 1em !important; }
+body.force-mobile .result-image { min-width: 120px !important; min-height: 100px !important; }
+body.force-mobile #download-buttons button {
+    width: 100% !important;
+    margin-top: 8px !important;
+    min-width: unset !important;
+    padding: 11px 0 !important;
+}
+body.force-mobile .result-image { width: 100% !important; max-width: 100% !important; }
