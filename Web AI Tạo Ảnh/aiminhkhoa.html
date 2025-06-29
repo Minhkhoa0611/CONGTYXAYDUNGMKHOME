@@ -12,10 +12,12 @@
         <div class="ui-toggle" style="position:absolute;top:18px;right:24px;z-index:10;display:flex;gap:8px;">
             <button id="desktop-mode-btn" title="Chế độ máy tính" type="button" style="background:none;border:none;cursor:pointer;padding:4px;">
                 <!-- Desktop icon -->
+                <span id="desktop-mode-indicator" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#6366f1;vertical-align:middle;margin-right:4px;opacity:0;"></span>
                 <svg width="24" height="24" fill="none" stroke="#6366f1" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </button>
             <button id="mobile-mode-btn" title="Chế độ mobile" type="button" style="background:none;border:none;cursor:pointer;padding:4px;">
                 <!-- Mobile icon -->
+                <span id="mobile-mode-indicator" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#06b6d4;vertical-align:middle;margin-right:4px;opacity:0;"></span>
                 <svg width="22" height="22" fill="none" stroke="#06b6d4" stroke-width="2" viewBox="0 0 22 22"><rect x="6" y="2" width="10" height="18" rx="2"/><circle cx="11" cy="18" r="1"/></svg>
             </button>
         </div>
@@ -139,9 +141,115 @@
     <div style="text-align:center; margin: 24px 0 0 0; font-size: 1em; color: #555;">
         Được phát triển bởi <strong>Trần Minh Khoa</strong> - <a href="mailto:khoaminhtran9@gmail.com" style="color:#4f46e5;text-decoration:underline;">khoaminhtran9@gmail.com</a>
     </div>
+    <!-- Phần donate -->
+    <div style="text-align:center; margin: 18px 0 0 0;">
+        <div style="font-size:1.15em; color:#6366f1; font-weight:bold; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:8px;">
+            <svg width="22" height="22" fill="#f43f5e" viewBox="0 0 24 24" style="vertical-align:middle;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            Ủng hộ tác giả qua QR Banking
+        </div>
+        <div style="
+            display:inline-block;
+            background:linear-gradient(135deg,#f8fafc 80%,#e0e7ef 100%);
+            border-radius:16px;
+            box-shadow:0 4px 18px #e0e7ef, 0 1.5px 0 #6366f1 inset;
+            padding:20px 28px 18px 28px;
+            border:2px solid #6366f1;
+            min-width:260px;
+            max-width:98vw;
+            ">
+            <div style="margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:8px;">
+                <label for="donate-amount" style="font-size:1.07em;color:#444;font-weight:500;">Chọn hạn mức:</label>
+                <select id="donate-amount" style="
+                    margin-left:0;
+                    padding:6px 16px;
+                    border-radius:8px;
+                    border:1.5px solid #6366f1;
+                    background:#fff;
+                    color:#3730a3;
+                    font-size:1.07em;
+                    font-weight:500;
+                    transition:box-shadow 0.2s,border-color 0.2s;
+                    box-shadow:0 1.5px 0 #e0e7ef;
+                    cursor:pointer;
+                " onmouseover="this.style.borderColor='#4f46e5'" onmouseout="this.style.borderColor='#6366f1'">
+                    <option value="">-- Chọn hạn mức --</option>
+                    <option value="5000">5.000đ</option>
+                    <option value="10000">10.000đ</option>
+                    <option value="20000">20.000đ</option>
+                    <option value="50000">50.000đ</option>
+                    <option value="100000">100.000đ</option>
+                    <option value="200000">200.000đ</option>
+                    <option value="500000">500.000đ</option>
+                </select>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <img id="donate-qr-img"
+                    src="https://img.vietqr.io/image/970423-0867544809-compact2.png?accountName=TRAN%20MINH%20KHOA&addInfo=DONATE%20AI%20MKHOME"
+                    alt="QR chuyển khoản TPBank 0867544809"
+                    style="width:170px;max-width:100%;border-radius:12px;display:block;margin:auto;box-shadow:0 2px 12px #e0e7ef;transition:transform 0.18s;"
+                    onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 4px 18px #6366f1';"
+                    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 2px 12px #e0e7ef';"
+                >
+                <div style="margin-top:10px; font-size:1.05em; color:#444; letter-spacing:0.01em;">
+                    <b style="color:#6366f1;">TPBANK</b> - <b>0867544809</b><br>
+                    <span style="font-weight:500;">TRAN MINH KHOA</span>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:10px; color:#888; font-size:1em;">
+            Nội dung chuyển khoản: <b style="color:#6366f1;">DONATE AI MKHOME</b><br>
+            <span style="font-size:0.97em;">Cảm ơn bạn đã ủng hộ! <span style="color:#f43f5e;">♥</span></span>
+        </div>
+        <div style="margin-top:8px; color:#b91c1c; font-size:0.97em; max-width:420px; margin-left:auto; margin-right:auto;">
+            <b>Lưu ý:</b> Donate là <b>tự nguyện</b>. Nếu gặp vấn đề trong quá trình chuyển khoản hoặc sử dụng dịch vụ, chúng tôi <b>miễn trừ trách nhiệm</b>.
+        </div>
+    </div>
+    <script>
+    // filepath: c:\Users\MKCONS\Desktop\Web AI Tạo Ảnh\aiminhkhoa.html
+    // Donate QR động theo hạn mức
+    document.getElementById('donate-amount').onchange = function() {
+        var amount = this.value;
+        var qr = document.getElementById('donate-qr-img');
+        var base = "https://img.vietqr.io/image/970423-0867544809-compact2.png?accountName=TRAN%20MINH%20KHOA";
+        var info = "&addInfo=DONATE%20AI%20MKHOME";
+        if (amount) {
+            qr.src = base + "&amount=" + amount + info;
+        } else {
+            qr.src = base + info;
+        }
+    };
+    </script>
     <footer>
         <p>© 2024 <span class="brand-gradient">AI MKHOME</span> | Powered by AI</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+// filepath: c:\Users\MKCONS\Desktop\Web AI Tạo Ảnh\aiminhkhoa.html
+// Chuyển đổi giao diện desktop/mobile bằng cách thêm/xóa class vào body
+function updateUIModeIndicator() {
+    document.getElementById('desktop-mode-indicator').style.opacity =
+        document.body.classList.contains('desktop-mode') ? '1' : '0.15';
+    document.getElementById('mobile-mode-indicator').style.opacity =
+        document.body.classList.contains('mobile-mode') ? '1' : '0.15';
+}
+document.getElementById('desktop-mode-btn').onclick = function() {
+    document.body.classList.add('desktop-mode');
+    document.body.classList.remove('mobile-mode');
+    updateUIModeIndicator();
+};
+document.getElementById('mobile-mode-btn').onclick = function() {
+    document.body.classList.add('mobile-mode');
+    document.body.classList.remove('desktop-mode');
+    updateUIModeIndicator();
+};
+// Khởi tạo trạng thái ban đầu
+updateUIModeIndicator();
+// Hàm kiểm tra đang ở chế độ nào
+function getCurrentUIMode() {
+    if (document.body.classList.contains('desktop-mode')) return 'desktop';
+    if (document.body.classList.contains('mobile-mode')) return 'mobile';
+    return 'default';
+}
+    </script>
 </body>
 </html>

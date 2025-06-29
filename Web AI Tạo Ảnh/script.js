@@ -109,14 +109,51 @@ document.getElementById('ai-form').addEventListener('submit', async function(e) 
         }
         if (imgUrl && typeof imgUrl === "string") {
             const base64 = await imageUrlToBase64(imgUrl);
-            document.getElementById('result-image-1').innerHTML = `
-                <div class="image-wrapper">
-                    <img id="ai-result-img" src="data:image/png;base64,${base64}" alt="Kết quả AI">
-                    <span class="ai-watermark-by">By MinhKhoa</span>
-                </div>
-            `;
-            document.getElementById('result-url').innerHTML = `<a href="${imgUrl}" target="_blank">${imgUrl}</a>`;
-            showDownloadButtons(base64);
+
+            // Thêm watermark trực tiếp lên ảnh kết quả AI
+            const img = new window.Image();
+            img.src = 'data:image/png;base64,' + base64;
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+
+                // Vẽ watermark nhỏ, màu gradient nổi bật
+                const text = 'AI MKHOME';
+                const fontSize = Math.round(canvas.height * 0.035);
+                ctx.save();
+                ctx.font = `italic bold ${fontSize}px "Segoe Script", "Brush Script MT", "Pacifico", cursive, Arial`;
+                ctx.textBaseline = 'bottom';
+                ctx.textAlign = 'right';
+                const padding = Math.round(canvas.height * 0.025);
+
+                const gradient = ctx.createLinearGradient(
+                    canvas.width - 300, canvas.height - padding - 20,
+                    canvas.width, canvas.height - padding
+                );
+                gradient.addColorStop(0, '#6366f1');
+                gradient.addColorStop(0.5, '#06b6d4');
+                gradient.addColorStop(1, '#a21caf');
+
+                ctx.shadowColor = 'rgba(99,102,241,0.25)';
+                ctx.shadowBlur = 6;
+                ctx.globalAlpha = 0.82;
+                ctx.fillStyle = gradient;
+                ctx.fillText(text, canvas.width - padding, canvas.height - padding - 2);
+                ctx.restore();
+
+                // Hiển thị ảnh kết quả với watermark
+                const resultBase64 = canvas.toDataURL('image/png').split(',')[1];
+                document.getElementById('result-image-1').innerHTML = `
+                    <div class="image-wrapper">
+                        <img id="ai-result-img" src="data:image/png;base64,${resultBase64}" alt="Kết quả AI">
+                    </div>
+                `;
+                document.getElementById('result-url').innerHTML = `<a href="${imgUrl}" target="_blank">${imgUrl}</a>`;
+                showDownloadButtons(resultBase64);
+            };
         } else {
             document.getElementById('result-image-1').innerHTML = '<span>Không tạo được ảnh</span>';
             document.getElementById('result-url').innerHTML = '';
@@ -188,24 +225,30 @@ document.getElementById('download-watermark').onclick = async function() {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
 
-        // Vẽ watermark
-        const text = 'By MinhKhoa';
-        const fontSize = Math.round(canvas.height * 0.045);
-        ctx.font = `bold ${fontSize}px Segoe UI, Arial`;
+        // Vẽ watermark nhỏ, màu gradient nổi bật
+        const text = 'AI MKHOME';
+        const fontSize = Math.round(canvas.height * 0.035); // nhỏ hơn
+        ctx.save();
+        ctx.font = `italic bold ${fontSize}px "Segoe Script", "Brush Script MT", "Pacifico", cursive, Arial`;
         ctx.textBaseline = 'bottom';
         ctx.textAlign = 'right';
-        const padding = Math.round(canvas.height * 0.03);
-        // Shadow
+        const padding = Math.round(canvas.height * 0.025);
+
+        // Gradient màu sắc cho watermark
+        const gradient = ctx.createLinearGradient(
+            canvas.width - 300, canvas.height - padding - 20,
+            canvas.width, canvas.height - padding
+        );
+        gradient.addColorStop(0, '#6366f1'); // Indigo
+        gradient.addColorStop(0.5, '#06b6d4'); // Cyan
+        gradient.addColorStop(1, '#a21caf'); // Violet
+
         ctx.shadowColor = 'rgba(99,102,241,0.25)';
-        ctx.shadowBlur = 4;
-        // Không vẽ nền mờ nữa
-        // ctx.globalAlpha = 0.65;
-        // ctx.fillStyle = '#6366f1';
-        // ctx.fillRect(canvas.width - textWidth - padding*2, canvas.height - rectHeight - padding, textWidth + padding*2, rectHeight);
-        ctx.globalAlpha = 1;
-        // Text
-        ctx.fillStyle = '#fff';
-        ctx.fillText(text, canvas.width - padding, canvas.height - padding - 4);
+        ctx.shadowBlur = 6;
+        ctx.globalAlpha = 0.82;
+        ctx.fillStyle = gradient;
+        ctx.fillText(text, canvas.width - padding, canvas.height - padding - 2);
+        ctx.restore();
 
         // Xuất ảnh
         const url = canvas.toDataURL('image/png');
@@ -240,3 +283,7 @@ function downloadUrl(url, filename) {
     a.click();
     document.body.removeChild(a);
 }
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
