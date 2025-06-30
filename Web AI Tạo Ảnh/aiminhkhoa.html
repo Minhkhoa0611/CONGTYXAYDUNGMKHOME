@@ -33,6 +33,46 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Hiển thị version AI ở góc trái trên cùng, click để chọn version -->
+    <div id="ai-version-label" style="
+        position:fixed;
+        top:10px;
+        left:10px;
+        z-index:1001;
+        background:rgba(99,102,241,0.09);
+        color:#6366f1;
+        font-weight:600;
+        font-size:0.92em;
+        padding:3px 10px 3px 8px;
+        border-radius:10px;
+        box-shadow:0 1px 4px #e0e7ef;
+        user-select:none;
+        letter-spacing:0.01em;
+        display:flex;
+        align-items:center;
+        gap:7px;
+        cursor:pointer;
+    ">
+        <span id="ai-version-text"></span>
+        <select id="ai-version-select" style="
+            display:none;
+            margin-left:0;
+            border-radius:6px;
+            border:1px solid #6366f1;
+            color:#3730a3;
+            font-weight:600;
+            font-size:0.93em;
+            background:#fff;
+            padding:1px 6px;
+            outline:none;
+            cursor:pointer;
+            height:22px;
+        " title="Chọn phiên bản AI">
+            <option value="1.1.1">Tria V1</option>
+            <option value="1.1.5">Tria V2</option>
+            <option value="2.1.1">Pro</option>
+        </select>
+    </div>
     <div class="container">
         <!-- Nút chọn giao diện -->
         <div class="ui-toggle" style="position:absolute;top:18px;right:24px;z-index:10;display:flex;gap:8px;">
@@ -68,7 +108,7 @@
                     <option value="server3">Sever 3</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="time-frame-group">
                 <label>
                     Khung thời gian:
                     <span class="form-note">(Chọn thời điểm trong ngày cho bức ảnh)</span>
@@ -154,7 +194,15 @@
                 <label>Mô tả ý tưởng:</label>
                 <textarea name="prompt" placeholder="Nhập mô tả ý tưởng thiết kế..."></textarea>
             </div>
-            <button type="submit">✨ Tạo Ảnh</button>
+            <button type="submit" id="submit-btn">✨ Tạo Ảnh</button>
+            <div id="limit-msg" style="
+                display:none;
+                color:#dc2626;
+                font-size:0.98em;
+                margin-top:8px;
+                text-align:center;
+                font-weight:500;
+            "></div>
         </form>
         <div id="result">
             <div class="result-title">Kết quả AI:</div>
@@ -243,13 +291,13 @@
             <b>Lưu ý:</b> Donate là <b>tự nguyện</b>. Nếu gặp vấn đề trong quá trình chuyển khoản hoặc sử dụng dịch vụ, chúng tôi <b>miễn trừ trách nhiệm</b>.
         </div>
     </div>
-    <!-- Nút/thông báo cài đặt PWA -->
+    <!-- Nút tải app PWA về máy -->
     <button id="install-pwa-btn" style="
         position:fixed;
         right:18px;
         bottom:22px;
         z-index:1000;
-        display:flex;
+        display:none;
         align-items:center;
         gap:8px;
         background:linear-gradient(90deg,#6366f1 60%,#06b6d4 100%);
@@ -263,14 +311,87 @@
         text-decoration:none;
         transition:background 0.18s,box-shadow 0.18s,transform 0.12s;
         cursor:pointer;
-        display:none;
     ">
         <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
             <path d="M12 3v14m0 0l-5-5m5 5l5-5"/><rect x="5" y="19" width="14" height="2" rx="1" fill="white"/>
         </svg>
-        Cài đặt ứng dụng
+        Tải App PWA về máy
     </button>
     <script>
+    // filepath: c:\Users\MKCONS\Desktop\Web AI Tạo Ảnh\aiminhkhoa.html
+    const VERSION_KEY = "AI_VERSION";
+    const TOKEN_KEY = "AI_TOKEN";
+    const DEFAULT_VERSION = "1.1.1";
+    const VERSION_LABELS = {
+        "1.1.1": "Tria V1",
+        "1.1.5": "Tria V2",
+        "2.1.1": "Pro"
+    };
+    let AI_VERSION = localStorage.getItem(VERSION_KEY) || DEFAULT_VERSION;
+    document.getElementById('ai-version-text').textContent = "AI " + (VERSION_LABELS[AI_VERSION] || AI_VERSION);
+    document.getElementById('ai-version-select').value = AI_VERSION;
+
+    const versionLabel = document.getElementById('ai-version-label');
+    const versionSelect = document.getElementById('ai-version-select');
+    versionLabel.onclick = function(e) {
+        versionSelect.style.display = 'inline-block';
+        versionSelect.focus();
+    };
+    versionSelect.onblur = function() {
+        setTimeout(() => { versionSelect.style.display = 'none'; }, 120);
+    };
+    versionSelect.onchange = async function() {
+        const newVersion = this.value;
+        if (newVersion === "2.1.1" && AI_VERSION !== "2.1.1") {
+            let savedToken = localStorage.getItem(TOKEN_KEY);
+            if (savedToken) {
+                localStorage.setItem(VERSION_KEY, newVersion);
+                location.reload();
+                return;
+            }
+            let token = prompt("Nhập mã token để nâng cấp lên phiên bản Pro:");
+            if (!token) {
+                alert("Bạn cần nhập token để nâng cấp.");
+                this.value = AI_VERSION;
+                return;
+            }
+            try {
+                let res = await fetch('token.json');
+                let validToken = (await res.text()).trim();
+                if (token.trim() === validToken) {
+                    localStorage.setItem(TOKEN_KEY, token.trim());
+                    localStorage.setItem(VERSION_KEY, newVersion);
+                    alert("Nâng cấp thành công! Đang chuyển sang phiên bản Pro.");
+                    location.reload();
+                } else {
+                    alert("Token không hợp lệ. Vui lòng liên hệ tác giả để nhận token.");
+                    this.value = AI_VERSION;
+                }
+            } catch (err) {
+                alert("Không thể xác thực token. Vui lòng thử lại hoặc liên hệ tác giả.");
+                this.value = AI_VERSION;
+            }
+        } else {
+            localStorage.setItem(VERSION_KEY, newVersion);
+            location.reload();
+        }
+    };
+
+    // Ẩn/hiện các trường theo version
+    window.addEventListener('DOMContentLoaded', function() {
+        if (AI_VERSION === "1.1.1" || AI_VERSION === "1.1.5") {
+            // Ẩn Sever 2, Sever 3
+            var aiServerSelect = document.getElementById('ai-server');
+            for (let i = aiServerSelect.options.length - 1; i >= 0; i--) {
+                if (aiServerSelect.options[i].value === "server2" || aiServerSelect.options[i].value === "server3") {
+                    aiServerSelect.remove(i);
+                }
+            }
+            // Ẩn khung thời gian
+            var timeFrameGroup = document.getElementById('time-frame-group');
+            if (timeFrameGroup) timeFrameGroup.style.display = "none";
+        }
+    });
     // filepath: c:\Users\MKCONS\Desktop\Web AI Tạo Ảnh\aiminhkhoa.html
     // Donate QR động theo hạn mức
     document.getElementById('donate-amount').onchange = function() {
@@ -284,9 +405,73 @@
             qr.src = base + info;
         }
     };
-    </script>
-    <script>
-    // filepath: c:\Users\MKCONS\Desktop\Web AI Tạo Ảnh\aiminhkhoa.html
+
+    // Giới hạn lượt tạo ảnh cho version thấp
+    function getTodayKey() {
+        const d = new Date();
+        return "ai_limit_" + d.getFullYear() + (d.getMonth()+1) + d.getDate();
+    }
+    function getCurrentCount() {
+        const key = getTodayKey();
+        return parseInt(localStorage.getItem(key) || "0", 10);
+    }
+    function incCount() {
+        const key = getTodayKey();
+        let c = getCurrentCount();
+        localStorage.setItem(key, c + 1);
+    }
+    function updateLimitUI() {
+        const isLimited = (AI_VERSION === "1.1.1" || AI_VERSION === "1.1.5");
+        const maxCount = 5;
+        const count = getCurrentCount();
+        const btn = document.getElementById('submit-btn');
+        const msg = document.getElementById('limit-msg');
+        if (isLimited) {
+            if (count >= maxCount) {
+                btn.disabled = true;
+                btn.style.pointerEvents = "none";
+                msg.style.display = "block";
+                msg.textContent = "Bạn đã hết lượt tạo ảnh miễn phí hôm nay (5/5). Vui lòng quay lại vào ngày mai.";
+            } else {
+                btn.disabled = false;
+                btn.style.pointerEvents = "";
+                msg.style.display = "block";
+                msg.textContent = `Bạn còn ${maxCount - count} lượt tạo ảnh miễn phí hôm nay.`;
+            }
+        } else {
+            btn.disabled = false;
+            btn.style.pointerEvents = "";
+            msg.style.display = "none";
+        }
+    }
+    window.addEventListener('DOMContentLoaded', updateLimitUI);
+
+    document.getElementById('ai-form').addEventListener('submit', function(e) {
+        var promptTextarea = document.querySelector('textarea[name="prompt"]');
+        if (!promptTextarea.value) {
+            var topicSelect = document.querySelector('select[name="topic"]');
+            // Chỉ gán prompt vào biến submit, không thay đổi value trong textarea
+            var form = this;
+            // Nếu form submit qua JS, hãy lấy promptTextarea.value = topicSelect.options[topicSelect.selectedIndex].text;
+            // Nếu submit mặc định (reload/trang mới), không cần gì thêm
+            // Nếu dùng AJAX, hãy lấy prompt như sau:
+            // var prompt = promptTextarea.value || topicSelect.options[topicSelect.selectedIndex].text;
+            // và gửi prompt này lên server
+            // Để không thay đổi textarea, chỉ return true để submit bình thường
+        }
+        if (AI_VERSION === "1.1.1" || AI_VERSION === "1.1.5") {
+            const maxCount = 5;
+            let count = getCurrentCount();
+            if (count >= maxCount) {
+                updateLimitUI();
+                e.preventDefault();
+                return false;
+            } else {
+                incCount();
+                setTimeout(updateLimitUI, 10);
+            }
+        }
+    });
     // Chuyển đổi giao diện desktop/mobile bằng cách thêm/xóa class vào body
     function updateUIModeIndicator() {
         document.getElementById('desktop-mode-indicator').style.opacity =
@@ -327,7 +512,7 @@
             // Để không thay đổi textarea, chỉ return true để submit bình thường
         }
     };
-    // PWA: Đăng ký service worker và xử lý nút cài đặt
+    // PWA: Đăng ký service worker và xử lý nút tải app PWA
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js');
     }
