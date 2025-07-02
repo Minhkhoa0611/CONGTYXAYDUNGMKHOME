@@ -97,3 +97,98 @@ footer .container p {
     margin: 0;
     font-size: 14px;
 }
+
+.pmk-header-glass {
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 4px 24px rgba(139,69,19,0.10);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.pmk-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding-top: 10px;
+}
+.pmk-logo {
+    font-size: 2.2rem;
+    color: #1db954;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+    padding: 8px 12px;
+    margin-right: 6px;
+}
+.pmk-header h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #8b4513;
+    margin: 0;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #fff8;
+}
+.pmk-nav-glass {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin: 18px 0 0 0;
+    padding: 10px 0;
+    background: rgba(245,245,220,0.7);
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
+    backdrop-filter: blur(6px);
+}
+.pmk-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #8b4513;
+    font-weight: 600;
+    font-size: 1.08rem;
+    padding: 8px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 
+        background 0.2s,
+        color 0.2s,
+        box-shadow 0.2s,
+        transform 0.18s;
+    box-shadow: 0 1px 4px rgba(139,69,19,0.04);
+    background: transparent;
+}
+.pmk-nav-link:hover, .pmk-nav-link:focus {
+    background: #1db954;
+    color: #fff;
+    box-shadow: 0 4px 16px #1db95444;
+    transform: translateY(-2px) scale(1.04);
+}
+.pmk-nav-link i {
+    font-size: 1.2em;
+}
+@media (max-width: 600px) {
+    .pmk-header-content {
+        flex-direction: column;
+        gap: 4px;
+    }
+    .pmk-header h1 {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    .pmk-logo {
+        font-size: 1.5rem;
+        padding: 6px 8px;
+    }
+    .pmk-nav-glass {
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px 0;
+    }
+    .pmk-nav-link {
+        font-size: 1rem;
+        padding: 7px 10px;
+    }
+}

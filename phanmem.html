@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Download Phần Mềm - Xây Dựng Minh Khoa</title>
     <script src="Theodoibaotri.js"></script>
-            <script src="maintenance.js" defer></script>
-
+    <script src="maintenance.js" defer></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H8NYE7G5J2"></script>
     <script>
@@ -17,63 +16,85 @@
     </script>
     <script src="menu.js"></script>
     <link rel="stylesheet" href="phanmem.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body style="background-color: #f5f5dc; color: #333; font-family: 'Roboto', sans-serif; margin: 0; padding: 0; margin-top: 20px;">
-    <section id="software" style="padding: 20px;">
-        <h2 style="text-align: center; font-size: 2rem; color: #8b4513;">Phần Mềm Kỹ Thuật</h2>
+<body>
+    <header class="pmk-header pmk-header-glass">
+        <div class="pmk-header-content">
+            <span class="pmk-logo"><i class="fa-solid fa-building"></i></span>
+            <h1>
+                Trang Download Phần Mềm - Xây Dựng Minh Khoa
+            </h1>
+        </div>
+        <nav class="pmk-nav pmk-nav-glass">
+            <a href="#software" class="pmk-nav-link">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>Kỹ Thuật</span>
+            </a>
+            <a href="#vanphong" class="pmk-nav-link">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Văn Phòng</span>
+            </a>
+            <a href="#image" class="pmk-nav-link">
+                <i class="fa-solid fa-image"></i>
+                <span>Sử Lý Ảnh</span>
+            </a>
+        </nav>
+    </header>
+    <section id="software" class="pmk-section">
+        <h2><i class="fa-solid fa-screwdriver-wrench"></i> Phần Mềm Kỹ Thuật</h2>
         <article>
-            <p style="text-align: center; font-size: 1.2rem;">Các phần mềm hỗ trợ công việc xây dựng:</p>
-            <ul style="list-style: none; padding: 0; text-align: center;">
-                <li><a href="PhanMem/AutoCAD/autocad.html" target="_blank" style="color: #1db954; text-decoration: none;">AutoDesk AutoCAD 2007 -2025</a></li>
-                <li><a href="PhanMem/HUONGDANCAICAD/Huongdancaiautocad2025.HTML" target="_blank" style="color: #1db954; text-decoration: none;">Hướng Dẫn Cài AutoCAD 2025</a></li>
-                <li><a href="PhanMem/AutoCAD Mechanical/autocadm.html" target="_blank" style="color: #1db954; text-decoration: none;">Autodesk AutoCAD Mechanical</a></li>
-                <li><a href="PhanMem/Revit/revit.html" target="_blank" style="color: #1db954; text-decoration: none;">AutoDesk Revit 2014 -2024</a></li>
-                <li><a href="PhanMem/HUONGDANCAIREVIT/Huongdancairevit2025.HTML" target="_blank" style="color: #1db954; text-decoration: none;">Hướng Dẫn Cài Autodesk Revit 2024</a></li>
-                <li><a href="PhanMem/CSI/SAP2000.html" target="_blank" style="color: #1db954; text-decoration: none;">CSI SAP 2000 V24</a></li>
-                <li><a href="PhanMem/CSI/SafeV12.html" target="_blank" style="color: #1db954; text-decoration: none;">CSI SAFE V12</a></li>
-                <li><a href="PhanMem/CSI/Etabs.html" target="_blank" style="color: #1db954; text-decoration: none;">CSI Etabs V17</a></li>
-                <li><a href="PhanMem/SketChup/SketChup.html" target="_blank" style="color: #1db954; text-decoration: none;">SketChup 2016-2024</a></li>
-                <li><a href="PhanMem/Photoshop/Photoshop.html" target="_blank" style="color: #1db954; text-decoration: none;">Adobe Photoshop CS3-2023</a></li>
-                <li><a href="PhanMem/CAPPHOI/capphoi.html" target="_blank" style="color: #1db954; text-decoration: none;">Tính Toán Cấp Phối Xây Dựng</a></li>
-                <li><a href="PhanMem/khobanve/khobanve.html" target="_blank" style="color: #1db954; text-decoration: none;">Kho Bản Vẽ Free</a></li>
-                <li><a href="PhanMem/Dutoanxaydung/Dự toán xây Dựng.html" target="_blank" style="color: #1db954; text-decoration: none;">Dự Toán Xây Dựng</a></li>
+            <p>Các phần mềm hỗ trợ công việc xây dựng:</p>
+            <ul class="pmk-list">
+                <li class="pmk-list-item"><i class="fa-solid fa-cube"></i><a class="pmk-link" href="PhanMem/AutoCAD/autocad.html" target="_blank">AutoDesk AutoCAD 2007 -2025</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-book"></i><a class="pmk-link" href="PhanMem/HUONGDANCAICAD/Huongdancaiautocad2025.HTML" target="_blank">Hướng Dẫn Cài AutoCAD 2025</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-cube"></i><a class="pmk-link" href="PhanMem/AutoCAD Mechanical/autocadm.html" target="_blank">Autodesk AutoCAD Mechanical</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-cube"></i><a class="pmk-link" href="PhanMem/Revit/revit.html" target="_blank">AutoDesk Revit 2014 -2024</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-book"></i><a class="pmk-link" href="PhanMem/HUONGDANCAIREVIT/Huongdancairevit2025.HTML" target="_blank">Hướng Dẫn Cài Autodesk Revit 2024</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-diagram-project"></i><a class="pmk-link" href="PhanMem/CSI/SAP2000.html" target="_blank">CSI SAP 2000 V24</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-diagram-project"></i><a class="pmk-link" href="PhanMem/CSI/SafeV12.html" target="_blank">CSI SAFE V12</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-diagram-project"></i><a class="pmk-link" href="PhanMem/CSI/Etabs.html" target="_blank">CSI Etabs V17</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-sketch"></i><a class="pmk-link" href="PhanMem/SketChup/SketChup.html" target="_blank">SketChup 2016-2024</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-adobe"></i><a class="pmk-link" href="PhanMem/Photoshop/Photoshop.html" target="_blank">Adobe Photoshop CS3-2023</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-flask"></i><a class="pmk-link" href="PhanMem/CAPPHOI/capphoi.html" target="_blank">Tính Toán Cấp Phối Xây Dựng</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-folder-open"></i><a class="pmk-link" href="PhanMem/khobanve/khobanve.html" target="_blank">Kho Bản Vẽ Free</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-calculator"></i><a class="pmk-link" href="PhanMem/Dutoanxaydung/Dự toán xây Dựng.html" target="_blank">Dự Toán Xây Dựng</a></li>
             </ul>
         </article>
     </section>
-    <section id="vanphong" style="padding: 20px;">
-        <h2 style="text-align: center; font-size: 2rem; color: #8b4513;">Phần Mềm Văn Phòng</h2>
+    <section id="vanphong" class="pmk-section">
+        <h2><i class="fa-solid fa-briefcase"></i> Phần Mềm Văn Phòng</h2>
         <article>
-            <p style="text-align: center; font-size: 1.2rem;">Các phần mềm hỗ trợ công việc văn phòng:</p>
-            <ul style="list-style: none; padding: 0; text-align: center;">
-                <li><a href="PhanMem/Office/office.html" target="_blank" style="color: #1db954; text-decoration: none;">MicroSoft Office</a></li>
-                <li><a href="https://www.wps.com/vi-VN/" target="_blank" style="color: #1db954; text-decoration: none;">WPS Office</a></li>
-                <li><a href="PhanMem/MsViso/Visio.html" target="_blank" style="color: #1db954; text-decoration: none;">MicroSoft Viso</a></li>
-                <li><a href="https://docs.google.com/" target="_blank" style="color: #1db954; text-decoration: none;">Google Docs</a></li>
-                <li><a href="https://sheets.google.com/" target="_blank" style="color: #1db954; text-decoration: none;">Google Trang Tính</a></li>
-                <li><a href="https://slides.google.com/" target="_blank" style="color: #1db954; text-decoration: none;">Google Slide</a></li>
-                <li><a href="https://colab.research.google.com/" target="_blank" style="color: #1db954; text-decoration: none;">Google Colab</a></li>
-                <li><a href="https://sites.google.com/" target="_blank" style="color: #1db954; text-decoration: none;">Google Sites</a></li>
-                <li><a href="https://forms.google.com/" target="_blank" style="color: #1db954; text-decoration: none;">Google Forms</a></li>
-                <li><a href="https://office.live.com/start/Word.aspx" target="_blank" style="color: #1db954; text-decoration: none;">Microsoft Word Online</a></li>
-                <li><a href="https://office.live.com/start/Excel.aspx" target="_blank" style="color: #1db954; text-decoration: none;">Microsoft Excel Online</a></li>
-                <li><a href="https://office.live.com/start/PowerPoint.aspx" target="_blank" style="color: #1db954; text-decoration: none;">Microsoft PowerPoint Online</a></li>
-                 <li><a href="https://minhkhoa0611.github.io/quanlynhansu/index.html" target="_blank" style="color: #1db954; text-decoration: none;">Chấm Công</a></li>
-
+            <p>Các phần mềm hỗ trợ công việc văn phòng:</p>
+            <ul class="pmk-list">
+                <li class="pmk-list-item"><i class="fa-brands fa-microsoft"></i><a class="pmk-link" href="PhanMem/Office/office.html" target="_blank">MicroSoft Office</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-file-word"></i><a class="pmk-link" href="https://www.wps.com/vi-VN/" target="_blank">WPS Office</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-diagram-project"></i><a class="pmk-link" href="PhanMem/MsViso/Visio.html" target="_blank">MicroSoft Viso</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-google"></i><a class="pmk-link" href="https://docs.google.com/" target="_blank">Google Docs</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-google"></i><a class="pmk-link" href="https://sheets.google.com/" target="_blank">Google Trang Tính</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-google"></i><a class="pmk-link" href="https://slides.google.com/" target="_blank">Google Slide</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-google"></i><a class="pmk-link" href="https://colab.research.google.com/" target="_blank">Google Colab</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-google"></i><a class="pmk-link" href="https://sites.google.com/" target="_blank">Google Sites</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-google"></i><a class="pmk-link" href="https://forms.google.com/" target="_blank">Google Forms</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-microsoft"></i><a class="pmk-link" href="https://office.live.com/start/Word.aspx" target="_blank">Microsoft Word Online</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-microsoft"></i><a class="pmk-link" href="https://office.live.com/start/Excel.aspx" target="_blank">Microsoft Excel Online</a></li>
+                <li class="pmk-list-item"><i class="fa-brands fa-microsoft"></i><a class="pmk-link" href="https://office.live.com/start/PowerPoint.aspx" target="_blank">Microsoft PowerPoint Online</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-user-check"></i><a class="pmk-link" href="https://minhkhoa0611.github.io/quanlynhansu/index.html" target="_blank">Chấm Công</a></li>
             </ul>
         </article>
     </section>
-    <section id="image" style="padding: 20px;">
-        <h2 style="text-align: center; font-size: 2rem; color: #8b4513;">Công Cụ Sử Lý Hình Ảnh Online</h2>
+    <section id="image" class="pmk-section">
+        <h2><i class="fa-solid fa-image"></i> Công Cụ Sử Lý Hình Ảnh Online</h2>
         <article>
-            <p style="text-align: center; font-size: 1.2rem;">Các Site Sử Lý Hình Ảnh Online:</p>
-            <ul style="list-style: none; padding: 0; text-align: center;">
-                <li><a href="PhanMem/sulyhinhanh/chuyendoihinhanh.html" target="_blank" style="color: #1db954; text-decoration: none;">Chuyển Đổi Định Dạng Hình Ảnh</a></li>
-                <li><a href="PhanMem/sulyhinhanh/botronanh.html" target="_blank" style="color: #1db954; text-decoration: none;">Tạo Bo Cho Khung Hình Ảnh</a></li>
-                <li><a href="PhanMem/sulyhinhanh/kichthuocanh.html" target="_blank" style="color: #1db954; text-decoration: none;">Thay Đổi Kích Thước Hình Ảnh Online</a></li>
-                <li><a href="PhanMem/sulyhinhanh/xoa_font_nen.html" target="_blank" style="color: #1db954; text-decoration: none;">Xóa Phông Nền</a></li>
-                <li><a href="PhanMem/sulyhinhanh/thay_font_nen.html" target="_blank" style="color: #1db954; text-decoration: none;">Thay Phông Nền</a></li>
-                <li><a href="Web AI Tạo Ảnh/aiminhkhoa.html" target="_blank" style="color: #1db954; text-decoration: none;">AI Minh Khoa</a></li>
-
+            <p>Các Site Sử Lý Hình Ảnh Online:</p>
+            <ul class="pmk-list">
+                <li class="pmk-list-item"><i class="fa-solid fa-image"></i><a class="pmk-link" href="PhanMem/sulyhinhanh/chuyendoihinhanh.html" target="_blank">Chuyển Đổi Định Dạng Hình Ảnh</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-crop"></i><a class="pmk-link" href="PhanMem/sulyhinhanh/botronanh.html" target="_blank">Tạo Bo Cho Khung Hình Ảnh</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-expand"></i><a class="pmk-link" href="PhanMem/sulyhinhanh/kichthuocanh.html" target="_blank">Thay Đổi Kích Thước Hình Ảnh Online</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-eraser"></i><a class="pmk-link" href="PhanMem/sulyhinhanh/xoa_font_nen.html" target="_blank">Xóa Phông Nền</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-fill-drip"></i><a class="pmk-link" href="PhanMem/sulyhinhanh/thay_font_nen.html" target="_blank">Thay Phông Nền</a></li>
+                <li class="pmk-list-item"><i class="fa-solid fa-user-check"></i><a class="pmk-link" href="Web AI Tạo Ảnh/aiminhkhoa.html" target="_blank">Chấm Công</a></li>
             </ul>
         </article>
     </section>
