@@ -27,56 +27,136 @@
                     <img src="office.png" alt="Office 2010">
                 </a>
                 <p class="image-caption">Office 2010</p>
-                <button onclick="openLink('https://drive.google.com/file/d/122XQ0ZlziiZcLZnyCFfaaEECHy3bP8io/view?usp=sharing')">Download</button>
+                <button onclick="downloadWithPassword('https://drive.google.com/file/d/122XQ0ZlziiZcLZnyCFfaaEECHy3bP8io/view?usp=sharing')">Download</button>
             </div>
             <div class="gallery-item">
                 <a href="https://drive.google.com/file/d/16hq-LwmGVvrH43RFXIGPz35WjEwlAFLO/view?usp=sharing" target="_blank">
                     <img src="office1.png" alt="Office 2013">
                 </a>
                 <p class="image-caption">Office 2013</p>
-                <button onclick="openLink('https://drive.google.com/file/d/16hq-LwmGVvrH43RFXIGPz35WjEwlAFLO/view?usp=sharing')">Download</button>
+                <button onclick="downloadWithPassword('https://drive.google.com/file/d/16hq-LwmGVvrH43RFXIGPz35WjEwlAFLO/view?usp=sharing')">Download</button>
             </div>
             <div class="gallery-item">
                 <a href="https://drive.google.com/file/d/12yI9f3hVwtbibwAJaWhRcFwU0U38mo5m/view?usp=sharing" target="_blank">
                     <img src="office.png" alt="Office 2016">
                 </a>
                 <p class="image-caption">Office 2016</p>
-                <button onclick="openLink('https://drive.google.com/file/d/12yI9f3hVwtbibwAJaWhRcFwU0U38mo5m/view?usp=sharing')">Download</button>
+                <button onclick="downloadWithPassword('https://drive.google.com/file/d/12yI9f3hVwtbibwAJaWhRcFwU0U38mo5m/view?usp=sharing')">Download</button>
             </div>
             <div class="gallery-item">
                 <a href="https://drive.google.com/file/d/10sEEMdIu-mnjv4ts3xDBRJJQsWk3_pyp/view?usp=sharing" target="_blank">
                     <img src="office1.png" alt="Office 2019">
                 </a>
                 <p class="image-caption">Office 2019</p>
-                <button onclick="openLink('https://drive.google.com/file/d/10sEEMdIu-mnjv4ts3xDBRJJQsWk3_pyp/view?usp=sharing')">Download</button>
+                <button onclick="downloadWithPassword('https://drive.google.com/file/d/10sEEMdIu-mnjv4ts3xDBRJJQsWk3_pyp/view?usp=sharing')">Download</button>
             </div>
             <div class="gallery-item">
                 <a href="https://drive.google.com/file/d/1IikRFWN8I3ajskgQQEOzDkmphVqicfU3/view?usp=sharing" target="_blank">
                     <img src="office.png" alt="Office 2021">
                 </a>
                 <p class="image-caption">Office 2021</p>
-                <button onclick="openLink('https://drive.google.com/file/d/1IikRFWN8I3ajskgQQEOzDkmphVqicfU3/view?usp=sharing')">Download</button>
+                <button onclick="downloadWithPassword('https://drive.google.com/file/d/1IikRFWN8I3ajskgQQEOzDkmphVqicfU3/view?usp=sharing')">Download</button>
             </div>
             <div class="gallery-item">
                 <a href="https://drive.google.com/file/d/15N1DlyvsGeaHoNK8heCjHJGgOTSsLXGb/view?usp=sharing" target="_blank">
                     <img src="office365plus.png" alt="Office 365">
                 </a>
                 <p class="image-caption">Office 365 Plus</p>
-                <button onclick="openLink('https://drive.google.com/file/d/15N1DlyvsGeaHoNK8heCjHJGgOTSsLXGb/view?usp=sharing')">Download</button>
+                <button onclick="downloadWithPassword('https://drive.google.com/file/d/15N1DlyvsGeaHoNK8heCjHJGgOTSsLXGb/view?usp=sharing')">Download</button>
             </div>
             <div class="gallery-item">
                 <a href="https://drive.google.com/file/d/14X4zJLFJ0MEvf738xj_Gc0VYEAadUASH/view?usp=sharing" target="_blank">
                     <img src="office2024.png" alt="Office 2013-2024 C2R">
                 </a>
                 <p class="image-caption">Office 2013-2024 C2R</p>
-                <button onclick="openLink('https://drive.google.com/file/d/14X4zJLFJ0MEvf738xj_Gc0VYEAadUASH/view?usp=sharing')">Download</button>
+                <button onclick="downloadWithPassword('https://drive.google.com/file/d/14X4zJLFJ0MEvf738xj_Gc0VYEAadUASH/view?usp=sharing')">Download</button>
+            </div>
+            <div class="gallery-item">
+                <a href="https://drive.google.com/file/d/1QnbbIrrBeLNY8K3ROHJLclXiHVzuOBtO/view?usp=sharing" target="_blank">
+                    <img src="officedeploymenttooolinsstaller.png" alt="Công Cụ Office Deployment Tool Installer">
+                </a>
+                <p class="image-caption">Công Cụ Office Deployment Tool Installer</p>
+                <p style="font-size: 0.95rem; color: #555; margin: 4px 0 8px 0;">Tác giả: Minh Khoa</p>
+                <button onclick="downloadTool()">Download</button>
+            </div>
+        </div>
+        <!-- Popup nhập mật khẩu/chờ -->
+        <div id="tool-popup" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.4); z-index:9999; align-items:center; justify-content:center;">
+            <div style="background:#fff; padding:30px 20px; border-radius:10px; box-shadow:0 2px 8px #0003; text-align:center; min-width:300px;">
+                <div id="popup-content">
+                    <label for="tool-password" style="font-size:1.1rem;">Nhập mật khẩu để tải công cụ:</label><br>
+                    <input type="password" id="tool-password" style="margin:10px 0; padding:5px; font-size:1rem;" autofocus>
+                    <br>
+                    <button onclick="submitToolPassword()" style="padding:6px 18px; font-size:1rem;">Xác nhận</button>
+                    <button onclick="closeToolPopup()" style="padding:6px 18px; font-size:1rem; margin-left:10px;">Hủy</button>
+                    <div style="margin-top:12px; font-size:0.98rem; color:#666;">
+                        Nếu không biết password vui lòng chờ <span id="wait-seconds">100</span> giây để tải công cụ.
+                    </div>
+                </div>
+                <div id="popup-wait" style="display:none;">
+                    <span id="wait-msg" style="font-size:1.1rem;">Sai mật khẩu! Vui lòng chờ <span id="wait-seconds2">100</span> giây để tải công cụ.</span>
+                </div>
             </div>
         </div>
     </main>
     <script>
         function openLink(url) {
-            if (url) {
-                window.open(url, 'popup', 'width=800,height=600,scrollbars=yes,resizable=yes');
+            // Không dùng nữa cho các nút download
+        }
+
+        // Popup logic cho tất cả các bản Office
+        var waitInterval;
+        var currentDownloadUrl = "";
+        var waitSeconds = 100;
+        function downloadWithPassword(url) {
+            currentDownloadUrl = url;
+            document.getElementById('tool-popup').style.display = 'flex';
+            document.getElementById('popup-content').style.display = '';
+            document.getElementById('popup-wait').style.display = 'none';
+            document.getElementById('tool-password').value = '';
+            document.getElementById('tool-password').focus();
+            // Thời gian chờ ngẫu nhiên từ 10 đến 100 giây
+            waitSeconds = Math.floor(Math.random() * 91) + 10;
+            document.getElementById('wait-seconds').textContent = waitSeconds;
+            if (waitInterval) clearInterval(waitInterval);
+            var seconds = waitSeconds;
+            waitInterval = setInterval(function() {
+                seconds--;
+                document.getElementById('wait-seconds').textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(waitInterval);
+                    window.open(currentDownloadUrl, 'popup', 'width=800,height=600,scrollbars=yes,resizable=yes');
+                    closeToolPopup();
+                }
+            }, 1000);
+        }
+
+        function closeToolPopup() {
+            document.getElementById('tool-popup').style.display = 'none';
+            if (waitInterval) clearInterval(waitInterval);
+        }
+
+        function submitToolPassword() {
+            var password = document.getElementById('tool-password').value;
+            if (password === "Minhkhoa@2206") {
+                window.open(currentDownloadUrl, 'popup', 'width=800,height=600,scrollbars=yes,resizable=yes');
+                closeToolPopup();
+            } else {
+                document.getElementById('popup-content').style.display = 'none';
+                document.getElementById('popup-wait').style.display = '';
+                // Đếm ngược tiếp tục ở popup-wait
+                var seconds = parseInt(document.getElementById('wait-seconds').textContent, 10);
+                document.getElementById('wait-seconds2').textContent = seconds;
+                if (waitInterval) clearInterval(waitInterval);
+                waitInterval = setInterval(function() {
+                    seconds--;
+                    document.getElementById('wait-seconds2').textContent = seconds;
+                    if (seconds <= 0) {
+                        clearInterval(waitInterval);
+                        window.open(currentDownloadUrl, 'popup', 'width=800,height=600,scrollbars=yes,resizable=yes');
+                        closeToolPopup();
+                    }
+                }, 1000);
             }
         }
     </script>
