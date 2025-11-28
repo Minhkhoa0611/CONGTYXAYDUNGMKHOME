@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quét mạng nội bộ để tìm máy chủ</title>
+    <meta name="viewport" content="width=1024" />
+    <link rel="icon" type="image/x-icon" href="iconlogo.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e0e7ff 0%, #f1f5f9 100%);
+            color: #232946;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255,255,255,0.92);
+            max-width: 600px; /* tăng rộng */
+            margin: 64px auto 0 auto;
+            border-radius: 28px;
+            box-shadow: 0 18px 56px 0 rgba(60, 72, 88, 0.18), 0 2px 12px 0 rgba(60, 72, 88, 0.09);
+            padding: 54px 54px 38px 54px; /* tăng padding ngang */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .container:before {
+            content: "";
+            position: absolute;
+            top: -90px; left: -90px;
+            width: 210px; height: 210px;
+            background: radial-gradient(circle, #6366f1 0%, #818cf8 60%, transparent 100%);
+            opacity: 0.10;
+            z-index: 0;
+        }
+        h2 {
+            color: #3730a3;
+            margin-bottom: 12px;
+            font-size: 2.05rem;
+            letter-spacing: 0.01em;
+            font-weight: 700;
+            text-shadow: 0 2px 12px #e0e7ff;
+            position: relative;
+            z-index: 1;
+        }
+        .desc {
+            color: #64748b;
+            font-size: 1.09em;
+            margin-bottom: 28px;
+            line-height: 1.6;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+        .log {
+            margin-top: 18px;
+            color: #334155;
+            font-size: 1.13em;
+            min-height: 90px;
+            word-break: break-all;
+            position: relative;
+            z-index: 1;
+        }
+        .spinner-svg {
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: 2px;
+        }
+        .ip-try {
+            color: #6366f1;
+            font-weight: 700;
+            font-family: 'Consolas', monospace;
+            font-size: 1.09em;
+            background: #eef2ff;
+            padding: 2px 8px;
+            border-radius: 7px;
+            margin-left: 2px;
+            box-shadow: 0 1px 4px 0 #e0e7ff;
+        }
+        .loading-text {
+            margin-left: 10px;
+            font-size: 1.09em;
+            color: #334155;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+        .found {
+            color: #059669;
+            font-weight: 600;
+            font-size: 1.13em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .notfound {
+            color: #ef4444;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            background: #e0e7ef;
+            border-radius: 12px;
+            height: 20px;
+            margin: 32px 0 0 0;
+            overflow: hidden;
+            box-shadow: 0 1.5px 8px 0 rgba(99,102,241,0.08);
+            transition: background 0.2s;
+        }
+        .progress-bar-bg:hover {
+            background: #c7d2fe;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #6366f1 60%, #60a5fa 100%);
+            height: 100%;
+            width: 0%;
+            border-radius: 12px;
+            transition: width 0.18s, background 0.3s;
+            box-shadow: 0 0.5px 4px 0 rgba(99,102,241,0.13);
+        }
+        .progress-label {
+            font-size: 1.05em;
+            color: #64748b;
+            margin-top: 11px;
+            letter-spacing: 0.01em;
+            font-weight: 500;
+        }
+        .icon {
+            width: 1.35em;
+            height: 1.35em;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+        .retry-btn {
+            margin: 22px auto 0 auto;
+            display: inline-block;
+            background: linear-gradient(90deg, #6366f1 60%, #60a5fa 100%);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.07em;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 32px;
+            box-shadow: 0 2px 8px 0 #c7d2fe;
+            cursor: pointer;
+            transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+        }
+        .retry-btn:hover {
+            background: linear-gradient(90deg, #818cf8 60%, #6366f1 100%);
+            box-shadow: 0 4px 16px 0 #a5b4fc;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .download-app-btn {
+            margin: 18px auto 0 auto;
+            display: inline-block;
+            background: linear-gradient(90deg, #22d3ee 60%, #6366f1 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.09em;
+            border: none;
+            border-radius: 9px;
+            padding: 12px 36px;
+            box-shadow: 0 2px 10px 0 #bae6fd;
+            cursor: pointer;
+            transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+            text-decoration: none;
+        }
+        .download-app-btn:hover {
+            background: linear-gradient(90deg, #6366f1 60%, #22d3ee 100%);
+            box-shadow: 0 4px 18px 0 #a5b4fc;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .download-app-btn .icon {
+            margin-right: 7px;
+            margin-left: -2px;
+            vertical-align: middle;
+        }
+        @media (max-width: 600px) {
+            .container {
+                max-width: 98vw;
+                padding: 18vw 2vw 10vw 2vw;
+            }
+            h2 { font-size: 1.2rem; }
+            .desc { font-size: 0.98em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Quét mạng nội bộ để tìm máy chủ</h2>
+        <div class="desc">
+            Công cụ này sẽ tự động dò tìm máy chủ <b>MK BASE File System</b> trong mạng nội bộ của bạn.<br>
+            Vui lòng đảm bảo thiết bị của bạn đã kết nối cùng mạng LAN/WiFi với máy chủ.
+        </div>
+        <div class="log" id="log">
+            <span class="spinner-svg">
+                <svg width="32" height="32" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#6366f1">
+                  <g fill="none" fill-rule="evenodd" stroke-width="4">
+                    <circle cx="22" cy="22" r="18" stroke-opacity="0.18"/>
+                    <path d="M40 22c0-9.94-8.06-18-18-18">
+                      <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="0.9s" repeatCount="indefinite"/>
+                    </path>
+                  </g>
+                </svg>
+            </span>
+            <span class="loading-text">Đang kiểm tra các địa chỉ IP trong mạng nội bộ 192.168.1.x...</span>
+            <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+            <div class="progress-label" id="progressLabel"></div>
+        </div>
+        <a class="download-app-btn" href="MKBaseAppInstaller.exe" download>
+            <svg class="icon" width="22" height="22" viewBox="0 0 20 20" fill="none">
+                <path d="M10 3v10m0 0l-4-4m4 4l4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="3" y="15" width="14" height="2" rx="1" fill="#fff" opacity="0.7"/>
+            </svg>
+            Tải xuống ứng dụng MK BASE
+        </a>
+    </div>
+    <script>
+        // Danh sách IP cần thử (192.168.1.1 -> 192.168.1.254)
+        const base = "192.168.1.";
+        const port = 3000;
+        const path = "/";
+        let current = 1;
+        const max = 254;
+        const logDiv = document.getElementById('log');
+        const progressBar = document.getElementById('progressBar');
+        const progressLabel = document.getElementById('progressLabel');
+        let found = false;
+
+        // SVG icons
+        const iconCheck = `<svg class="icon" fill="none" stroke="#059669" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" stroke="#059669" stroke-width="2.2" fill="#d1fae5"/><path d="M7 13l3 3 6-6" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+        const iconX = `<svg class="icon" fill="none" stroke="#ef4444" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" stroke="#ef4444" stroke-width="2.2" fill="#fee2e2"/><path d="M8 8l8 8M16 8l-8 8" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+        const spinnerSVG = `<span class="spinner-svg">
+            <svg width="32" height="32" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#6366f1">
+              <g fill="none" fill-rule="evenodd" stroke-width="4">
+                <circle cx="22" cy="22" r="18" stroke-opacity="0.18"/>
+                <path d="M40 22c0-9.94-8.06-18-18-18">
+                  <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="0.9s" repeatCount="indefinite"/>
+                </path>
+              </g>
+            </svg>
+        </span>`;
+
+        function showRetry() {
+            const retryBtn = document.createElement('button');
+            retryBtn.className = 'retry-btn';
+            retryBtn.innerHTML = 'Thử lại';
+            retryBtn.onclick = () => {
+                current = 1;
+                found = false;
+                logDiv.innerHTML = `
+                    ${spinnerSVG}
+                    <span class="loading-text">Đang kiểm tra các địa chỉ IP trong mạng nội bộ 192.168.1.x...</span>
+                    <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+                    <div class="progress-label" id="progressLabel"></div>
+                `;
+                document.getElementById('progressBar').style.width = "0%";
+                document.getElementById('progressLabel').textContent = "";
+                setTimeout(tryNextIP, 400);
+            };
+            logDiv.appendChild(retryBtn);
+        }
+
+        async function tryNextIP() {
+            if (current > max || found) {
+                if (!found) {
+                    progressBar.style.width = "100%";
+                    progressLabel.textContent = "Đã kiểm tra toàn bộ dải IP.";
+                    logDiv.innerHTML = `<span class="notfound">${iconX} Không phát hiện máy chủ nào trên dải 192.168.1.1-254:3000.</span>` +
+                        logDiv.innerHTML.replace(/<div.*<\/div>/, '');
+                    showRetry();
+                }
+                return;
+            }
+            const ip = base + current;
+            const percent = Math.round((current / max) * 100);
+            progressBar.style.width = percent + "%";
+            progressLabel.textContent = `Đã kiểm tra ${current} / ${max} (${percent}%)`;
+            logDiv.innerHTML = `
+                ${spinnerSVG}
+                <span class="loading-text">Đang kiểm tra: <span class="ip-try">http://${ip}:${port}${path}</span></span>
+                <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+                <div class="progress-label" id="progressLabel"></div>
+            `;
+            // Cập nhật lại progress bar trong logDiv
+            document.getElementById('progressBar').style.width = percent + "%";
+            document.getElementById('progressLabel').textContent = `Đã kiểm tra ${current} / ${max} (${percent}%)`;
+
+            let timeoutId;
+            try {
+                const controller = new AbortController();
+                timeoutId = setTimeout(() => controller.abort(), 180);
+                const res = await fetch(`http://${ip}:${port}${path}`, {
+                    method: 'GET',
+                    mode: 'no-cors',
+                    signal: controller.signal
+                });
+                found = true;
+                logDiv.innerHTML = `<span class="found">${iconCheck} Đã phát hiện máy chủ tại <b>http://${ip}:${port}${path}</b></span><br><span class="loading-text">Đang chuyển hướng đến máy chủ...</span>`;
+                setTimeout(() => {
+                    window.location.href = `http://${ip}:${port}${path}`;
+                }, 700);
+                return;
+            } catch (e) {
+                // Tiếp tục thử IP tiếp theo
+            } finally {
+                clearTimeout(timeoutId);
+            }
+            current++;
+            setTimeout(tryNextIP, 10);
+        }
+
+        tryNextIP();
+    </script>
+</body>
+</html>
