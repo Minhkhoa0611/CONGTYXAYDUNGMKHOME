@@ -1,0 +1,21 @@
+{
+  "name": "Quét mạng nội bộ MK BASE",
+  "short_name": "Quét MK BASE",
+  "start_url": "scan_ip.html",
+  "display": "standalone",
+  "background_color": "#6366f1",
+  "theme_color": "#6366f1",
+  "description": "Tìm máy chủ MK BASE File System trong mạng nội bộ.",
+  "icons": [
+    {
+      "src": "iconlogo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "iconlogo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

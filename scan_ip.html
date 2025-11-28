@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=1024" />
     <link rel="icon" type="image/x-icon" href="iconlogo.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
     <style>
         body {
             font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
@@ -216,13 +218,21 @@
             <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
             <div class="progress-label" id="progressLabel"></div>
         </div>
-        <a class="download-app-btn" href="MKBaseAppInstaller.exe" download>
+        <button class="download-app-btn" id="installPwaBtn" type="button" style="display:none;">
             <svg class="icon" width="22" height="22" viewBox="0 0 20 20" fill="none">
                 <path d="M10 3v10m0 0l-4-4m4 4l4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <rect x="3" y="15" width="14" height="2" rx="1" fill="#fff" opacity="0.7"/>
             </svg>
-            Tải xuống ứng dụng MK BASE
-        </a>
+            Cài đặt ứng dụng
+        </button>
+        <div id="pwaGuide" style="display:none; margin-top:18px; background:#eef2ff; color:#232946; border-radius:10px; padding:18px 18px 12px 18px; box-shadow:0 2px 8px #c7d2fe;">
+            <b>Cách cài đặt ứng dụng PWA:</b>
+            <ul style="text-align:left; margin:12px 0 0 0; padding-left:18px;">
+                <li>Trên Chrome/Edge: Nhấn vào biểu tượng <b>cài đặt ứng dụng</b> ở thanh địa chỉ hoặc menu trình duyệt.</li>
+                <li>Trên điện thoại: Chọn <b>Thêm vào Màn hình chính</b> từ menu trình duyệt.</li>
+            </ul>
+            <span style="font-size:0.97em; color:#64748b;">Nếu không thấy tuỳ chọn, hãy đảm bảo bạn đang dùng trình duyệt hỗ trợ PWA.</span>
+        </div>
     </div>
     <script>
         // Danh sách IP cần thử (192.168.1.1 -> 192.168.1.254)
@@ -317,6 +327,31 @@
             }
             current++;
             setTimeout(tryNextIP, 10);
+        }
+
+        // PWA install prompt
+        let deferredPrompt;
+        const installBtn = document.getElementById('installPwaBtn');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'inline-block';
+        });
+        installBtn.onclick = function() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.finally(() => {
+                    installBtn.style.display = 'none';
+                    deferredPrompt = null;
+                });
+            }
+        };
+
+        // Đăng ký service worker cho PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js');
+            });
         }
 
         tryNextIP();
